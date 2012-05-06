@@ -5,32 +5,27 @@
 #include <QAction>
 #include <QMessageBox>
 
-//#include "MainWindow.hpp"
 
-
-class Menu : public QMenu
+class Menu : public MainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		//Menu(MainWindow* mainWindow);
-		Menu();
+    public:
+        Menu();
 
-	private slots:
+    private slots:
 
-	private:
-		//MainWindow* mainWindow;
+    private:
+        QMenu* fileMenu;
+        QMenu* aboutMenu;
 
-		QMenu* fileMenu;
-		QMenu* aboutMenu;
+        QAction* addFilesAction;
+        QAction* aboutAction;
+        QAction* aboutQtAction;
+        QAction* exitAction;
 
-		QAction* addFilesAction;
-		QAction* aboutAction;
-		QAction* aboutQtAction;
-		QAction* exitAction;
-
-		void setup();
-		void about();
+        void setup();
+        void about();
 };
 
 #endif

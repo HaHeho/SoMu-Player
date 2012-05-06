@@ -1,8 +1,9 @@
 #include "Menu.hpp"
 
-Menu::Menu(MainWindow* refMainWindow)
+//Menu::Menu(MainWindow* refMainWindow)
+Menu::Menu()
 {
-	this->mainWindow = refMainWindow;
+	//this->mainWindow = refMainWindow;
 
 	fileMenu = new QMenu();
 	aboutMenu = new QMenu();
@@ -19,8 +20,8 @@ Menu::Menu(MainWindow* refMainWindow)
 
 	connect(addFilesAction, SIGNAL(triggered()), this, SLOT(addFiles()));
 	connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
-	connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-	connect(exitAction, SIGNAL(triggered()), this, SLOT(mainWindow->close()));
+	//connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+	//connect(exitAction, SIGNAL(triggered()), this, SLOT(mainWindow->close()));
 
 	setup();
 }

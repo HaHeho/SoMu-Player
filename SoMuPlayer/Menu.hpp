@@ -5,7 +5,7 @@
 #include <QAction>
 #include <QMessageBox>
 
-#include "MainWindow.hpp"
+//#include "MainWindow.hpp"
 
 
 class Menu : public QMenu
@@ -13,12 +13,13 @@ class Menu : public QMenu
 	Q_OBJECT
 
 	public:
-		Menu(MainWindow* mainWindow);
+		//Menu(MainWindow* mainWindow);
+		Menu();
 
 	private slots:
 
 	private:
-		MainWindow* mainWindow;
+		//MainWindow* mainWindow;
 
 		QMenu* fileMenu;
 		QMenu* aboutMenu;

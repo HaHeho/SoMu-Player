@@ -25,7 +25,8 @@ MainWindow::MainWindow()
 	setupUi();
 	timeLcd->display("00:00");
 
-	menu = new Menu(this);
+	//menu = new Menu(this);
+	menu = new Menu();
 }
 
 void MainWindow::addFiles()

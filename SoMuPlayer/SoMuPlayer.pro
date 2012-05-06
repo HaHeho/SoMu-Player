@@ -11,13 +11,9 @@ TEMPLATE = app
 
 
 SOURCES +=\
-        MainWindow.cpp \
+	MainWindow.cpp \
     Main.cpp \
     Menu.cpp
 
 HEADERS  += MainWindow.hpp \
     Menu.hpp
-
-wince*{
-    DEPLOYMENT_PLUGIN += phonon_ds9 phonon_waveout
-}

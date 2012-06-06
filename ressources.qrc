@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="forward">Ressources/Images/Buttons/forward.png</file>
+        <file alias="forward-on">Ressources/Images/Buttons/forward-on.png</file>
+        <file alias="pause">Ressources/Images/Buttons/pause.png</file>
+        <file alias="pause-on">Ressources/Images/Buttons/pause-on.png</file>
+        <file alias="play">Ressources/Images/Buttons/play.png</file>
+        <file alias="play-on">Ressources/Images/Buttons/play-on.png</file>
+        <file alias="rewind">Ressources/Images/Buttons/rewind.png</file>
+        <file alias="rewind-on">Ressources/Images/Buttons/rewind-on.png</file>
+        <file alias="sound">Ressources/Images/Buttons/sound.png</file>
+        <file alias="sound-on">Ressources/Images/Buttons/sound-on.png</file>
+        <file alias="stop">Ressources/Images/Buttons/stop.png</file>
+        <file alias="stop-on">Ressources/Images/Buttons/stop-on.png</file>
+    </qresource>
+</RCC>

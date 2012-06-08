@@ -1,8 +1,13 @@
-#ifndef SOUNDSYSTEM_H
-#define SOUNDSYSTEM_H
+#ifndef SOUND_SYSTEM_HPP
+#define SOUND_SYSTEM_HPP
 
-#include "api/inc/fmod_errors.h"
-#include "api/inc/fmod.hpp"
+
+#include <QtGui>
+#include <conio.h>
+
+#include "wincompat.h"
+#include "fmod_errors.h"
+#include "fmod.hpp"
 
 
 class SoundSystem
@@ -29,4 +34,4 @@ private:
     FMOD_RESULT       result;
 };
 
-#endif // SOUNDSYSTEM_H
+#endif // SOUND_SYSTEM_HPP

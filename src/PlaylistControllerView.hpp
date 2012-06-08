@@ -1,11 +1,13 @@
-#ifndef PLAYLISTCONTROLLERVIEW_H
-#define PLAYLISTCONTROLLERVIEW_H
+#ifndef PLAYLIST_CONTROLLER_VIEW_HPP
+#define PLAYLIST_CONTROLLER_VIEW_HPP
 
 
 #include <QLabel>
-#include "src/basicitem.h"
-#include "src/playlistcontroller.h"
-#include "src/dragarea.h"
+#include <QtGui>
+#include <QGraphicsRectItem>
+#include "BasicItem.hpp"
+#include "PlaylistController.hpp"
+#include "DragArea.hpp"
 
 
 class PlaylistControllerView : public BasicItem
@@ -31,4 +33,4 @@ public slots:
     void handleDragObject(QString path);
 };
 
-#endif // PLAYLISTCONTROLLERVIEW_H
+#endif // PLAYLIST_CONTROLLER_VIEW_HPP

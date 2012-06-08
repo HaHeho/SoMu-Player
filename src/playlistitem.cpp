@@ -1,6 +1,4 @@
-#include <QtGui>
-#include "src/playlistitem.h"
-#include "api/inc/fmod.hpp"
+#include "PlayListItem.hpp"
 
 
 PlayListItem::PlayListItem(FMOD::Sound* sound, float w, float h) : BasicItem(w, h)

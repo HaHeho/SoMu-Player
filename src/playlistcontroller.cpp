@@ -1,5 +1,4 @@
-#include <QDebug>
-#include "src/playlistcontroller.h"
+#include "PlaylistController.hpp"
 
 
 PlayListController::PlayListController(SoundSystem *ss, QObject *parent) : QObject(parent)

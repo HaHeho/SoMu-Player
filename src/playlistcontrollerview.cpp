@@ -1,6 +1,4 @@
-#include <QtGui>
-#include <QGraphicsRectItem>
-#include "src/playlistcontrollerview.h"
+#include "PlaylistControllerView.hpp"
 
 
 PlaylistControllerView::PlaylistControllerView(PlayListController *pc, float w, float h) : BasicItem(w, h)

@@ -1,6 +1,4 @@
-#include <QtGui>
-#include <stdio.h>
-#include "src/player.h"
+#include "Player.hpp"
 
 
 Player::Player(QGraphicsScene *pScene) : QGraphicsView(pScene)
@@ -24,7 +22,7 @@ Player::Player(QGraphicsScene *pScene) : QGraphicsView(pScene)
 
     QTimer* timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updatePlayer()));
-    timer->start(1000/60);
+    timer->start(1000 / 60);
 }
 
 

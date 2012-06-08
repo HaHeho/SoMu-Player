@@ -1,12 +1,14 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
+
+#include <stdio.h>
 #include <QtGui>
-#include "src/soundcontroller.h"
-#include "src/soundcontrollerview.h"
-#include "src/playlistcontroller.h"
-#include "src/playlistcontrollerview.h"
-#include "src/soundsystem.h"
+#include "SoundController.hpp"
+#include "SoundControllerView.hpp"
+#include "PlayListController.hpp"
+#include "PlaylistControllerView.hpp"
+#include "SoundSystem.hpp"
 
 
 class Player : public QGraphicsView
@@ -31,4 +33,4 @@ public slots:
 
 };
 
-#endif // PLAYER_H
+#endif // PLAYER_HPP

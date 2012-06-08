@@ -1,6 +1,4 @@
-#include <QtGui>
-#include "src/soundsystem.h"
-#include "common/wincompat.h"
+#include "SoundSystem.hpp"
 
 
 SoundSystem::SoundSystem()
@@ -13,22 +11,25 @@ void SoundSystem::init()
 {
     unsigned int      version;
 
-    /*
-        Create a System object and initialize.
-    */
+    // Create a System object and initialize.
     result = FMOD::System_Create(&system);
     checkError(result);
-    result = system->setOutput(FMOD_OUTPUTTYPE_ALSA);
+
+    // Treiber für Linux war FMOD_OUTPUTTYPE_ALSA
+    //result = system->setOutput(FMOD_OUTPUTTYPE_ALSA);
+    result = system->setOutput(FMOD_OUTPUTTYPE_AUTODETECT);
     checkError(result);
+
     result = system->init(32, FMOD_INIT_NORMAL, 0);
     checkError(result);
+
     result = system->getVersion(&version);
     checkError(result);
 
     if (version < FMOD_VERSION)
     {
         qDebug("Error! You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
-        getch();
+        _getch();
         exit(0);
     }
 }

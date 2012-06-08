@@ -1,9 +1,10 @@
-#ifndef SOUNDCONTROLLER_H
-#define SOUNDCONTROLLER_H
+#ifndef SOUND_CONTROLLER_HPP
+#define SOUND_CONTROLLER_HPP
 
 #include <QObject>
-#include "src/soundsystem.h"
-#include "src/playlistcontroller.h"
+#include <QDebug>
+#include "SoundSystem.hpp"
+#include "PlaylistController.hpp"
 
 
 class SoundController : public QObject
@@ -22,7 +23,7 @@ private:
 
 
 signals:
-    
+
 public slots:
     void play();
     void pause();
@@ -30,4 +31,4 @@ public slots:
     void prev();
 };
 
-#endif // SOUNDCONTROLLER_H
+#endif // SOUND_CONTROLLER_HPP

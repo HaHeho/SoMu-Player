@@ -19,3 +19,6 @@ Thumbs.db
 *.lai
 *.la
 *.a
+
+# Qt User File
+*.user

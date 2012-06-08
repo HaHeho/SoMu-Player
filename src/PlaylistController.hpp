@@ -1,9 +1,9 @@
-#ifndef PLAYLISTCONTROLLER_H
-#define PLAYLISTCONTROLLER_H
+#ifndef PLAYLIST_CONTROLLER_HPP
+#define PLAYLIST_CONTROLLER_HPP
 
 #include <QObject>
-#include "src/soundsystem.h"
-#include "src/playlistitem.h"
+#include "SoundSystem.hpp"
+#include "PlaylistItem.hpp"
 
 
 class PlayListController : public QObject
@@ -29,4 +29,4 @@ public slots:
     void startSound(PlayListItem*);
 };
 
-#endif // PLAYLISTCONTROLLER_H
+#endif // PLAYLIST_CONTROLLER_HPP

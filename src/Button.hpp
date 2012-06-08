@@ -1,9 +1,8 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
 
 #include <string>
-#include <QObject>
-#include "src/basicitem.h"
+#include "BasicItem.hpp"
 
 
 class Button : public BasicItem
@@ -34,10 +33,10 @@ private:
 signals:
     void clicked();
 
-    
+
 public slots:
-    
+
 
 };
 
-#endif // BUTTON_H
+#endif // BUTTON_HPP

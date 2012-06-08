@@ -1,7 +1,4 @@
-#include <QtGui>
-#include "src/soundcontrollerview.h"
-#include "src/button.h"
-#include "src/soundcontroller.h"
+#include "SoundControllerView.hpp"
 
 
 SoundControllerView::SoundControllerView(SoundController* sc, SoundSystem* ss, float w, float h) : BasicItem(w, h)
@@ -49,7 +46,7 @@ void SoundControllerView::updateView()
         return;
 
     float perc = soundSystem->getCurPositionInPerc();
-    progressSlider->setValue(perc*progressSlider->maximum());
+    progressSlider->setValue(perc * progressSlider->maximum());
 
 
     int pos = soundSystem->getCurPositionInMs();

@@ -1,5 +1,5 @@
-#include <QtGui>
-#include "src/basicitem.h"
+#include "BasicItem.hpp"
+
 
 BasicItem::BasicItem(float w, float h)
 {

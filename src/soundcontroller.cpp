@@ -1,5 +1,4 @@
-#include <QDebug>
-#include "src/soundcontroller.h"
+#include "SoundController.hpp"
 
 
 SoundController::SoundController(SoundSystem* ss, QObject *parent) : QObject(parent)

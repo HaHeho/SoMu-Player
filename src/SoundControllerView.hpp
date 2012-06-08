@@ -1,8 +1,9 @@
-#ifndef SOUNDCONTROLLERVIEW_H
-#define SOUNDCONTROLLERVIEW_H
+#ifndef SOUND_CONTROLLER_VIEW_HPP
+#define SOUND_CONTROLLER_VIEW_HPP
 
-#include "src/basicitem.h"
-#include "src/soundcontroller.h"
+#include "BasicItem.hpp"
+#include "Button.hpp"
+#include "SoundController.hpp"
 
 
 class SoundControllerView : public BasicItem
@@ -27,11 +28,11 @@ private:
 
 signals:
 
-    
+
 public slots:
     void enableSliderMoveMode();
     void disableSliderMoveMode();
 
 };
 
-#endif // SOUNDCONTROLLERVIEW_H
+#endif // SOUND_CONTROLLER_VIEW_HPP

@@ -1,5 +1,4 @@
-#include <QtGui>
-#include "src/dragarea.h"
+#include "DragArea.hpp"
 
 
 DragArea::DragArea(QWidget *parent) : QLabel(parent)

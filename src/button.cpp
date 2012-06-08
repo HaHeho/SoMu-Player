@@ -1,6 +1,4 @@
-#include <QtGui>
-#include <string>
-#include "src/button.h"
+#include "Button.hpp"
 
 
 Button::Button(float w, float h) : BasicItem(w, h)

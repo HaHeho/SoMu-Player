@@ -1,5 +1,5 @@
-#ifndef DRAGAREA_H
-#define DRAGAREA_H
+#ifndef DRAG_AREA_HPP
+#define DRAG_AREA_HPP
 
 #include <QtGui>
 #include <QLabel>
@@ -35,4 +35,4 @@ protected:
     void dropEvent(QDropEvent *event);
 };
 
-#endif // DRAGAREA_H
+#endif // DRAG_AREA_HPP

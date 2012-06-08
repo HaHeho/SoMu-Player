@@ -1,12 +1,16 @@
-#ifndef BASICITEM_H
-#define BASICITEM_H
+#ifndef BASIC_ITEM_HPP
+#define BASIC_ITEM_HPP
 
+
+#include <QObject>
+#include <QtGui>
 #include <QGraphicsItem>
 
 
 class BasicItem : public QObject, public QGraphicsItem
 {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
 public:
     BasicItem(float w, float h);
@@ -29,4 +33,4 @@ public slots:
 
 };
 
-#endif // BASICITEM_H
+#endif // BASIC_ITEM_HPP

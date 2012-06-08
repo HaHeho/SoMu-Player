@@ -1,9 +1,10 @@
-#ifndef PLAYLISTITEM_H
-#define PLAYLISTITEM_H
+#ifndef PLAYLIST_ITEM_HPP
+#define PLAYLIST_ITEM_HPP
+
 
 #include <QtGui>
-#include "src/basicitem.h"
-#include "api/inc/fmod.hpp"
+#include "BasicItem.hpp"
+#include "fmod.hpp"
 
 
 class PlayListItem : public BasicItem
@@ -32,4 +33,4 @@ public slots:
 
 };
 
-#endif // PLAYLISTITEM_H
+#endif // PLAYLIST_ITEM_HPP

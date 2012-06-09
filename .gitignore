@@ -8,14 +8,11 @@ Thumbs.db
 *.slo
 *.lo
 *.o
-
 # Compiled Dynamic libraries
 *.so
-
 # Compiled Static libraries
 *.lai
 *.la
 *.a
-
 # Qt User File
-/*.pro.user
+*.pro.user

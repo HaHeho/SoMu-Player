@@ -4,16 +4,13 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-
 # Compiled Object files
 *.slo
 *.lo
 *.o
 
-
 # Compiled Dynamic libraries
 *.so
-
 
 # Compiled Static libraries
 *.lai
@@ -21,4 +18,4 @@ Thumbs.db
 *.a
 
 # Qt User File
-*.user
+/*.pro.user

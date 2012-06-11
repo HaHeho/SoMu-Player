@@ -6,21 +6,29 @@ AlbumTrack::AlbumTrack(Album* album, QString trackPath)
 {
     this->album = album;
     this->path = trackPath;
-
-    //get Name of the Song
-    QRegExp rx("\\..*");
-    char name[100];
-    sound->getName(name, 100);
-    QString strName = QString(name);
-    strName.remove(rx);
-
-    //calculate Duration
-    sound->getLength(&this->duration, FMOD_TIMEUNIT_MS);
 }
 
 void AlbumTrack::setSound(FMOD::Sound* sound)
 {
     this->sound = sound;
+
+    parseTitle();
+    calculateDuration();
+}
+
+void AlbumTrack::parseTitle()
+{
+    QRegExp rx("\\..*");
+    char name[100];
+    this->sound->getName(name, 100);
+    QString strName = QString(name);
+    strName.remove(rx);
+    this->title = strName;
+}
+
+void AlbumTrack::calculateDuration()
+{
+    this->sound->getLength(&this->duration, FMOD_TIMEUNIT_MS);
 }
 
 QString AlbumTrack::getPath()

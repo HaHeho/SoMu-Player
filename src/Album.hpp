@@ -2,32 +2,13 @@
 #define ALBUM_HPP
 
 
+#include <QPixmap>
+#include "fmod.hpp"
 #include "AlbumCover.hpp"
 
 
 //forward-Deklaration
-class AlbumTrack;
-
-class Album
-{
-public:
-    Album(QString path);
-    void setCover(QString coverPath);
-    AlbumTrack* addTrack(QString trackPath);
-    QPixmap* getCoverImage();
-
-private:
-    QString name;
-    AlbumCover cover;
-    QList<AlbumTrack*> trackList;
-};
-
-
-
-
-#include <QPixmap>
-#include "fmod.hpp"
-//#include "Album.hpp"
+class Album;
 
 
 class AlbumTrack
@@ -43,12 +24,28 @@ public:
     unsigned int getDuration();
 
 private:
-    QString path;
-    Album* album;
-    QString title;
+    QString      path;
+    Album*       album;
+    QString      title;
     FMOD::Sound* sound;
     unsigned int duration;
+    void parseTitle();
+    void calculateDuration();
 
+};
+
+class Album
+{
+public:
+    Album(QString path);
+    void setCover(QString coverPath);
+    AlbumTrack* addTrack(QString trackPath);
+    QPixmap* getCoverImage();
+
+private:
+    QString            name;
+    AlbumCover         cover;
+    QList<AlbumTrack*> trackList;
 };
 
 

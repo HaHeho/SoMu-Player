@@ -1,6 +1,10 @@
 #include "AlbumCover.hpp"
 
 
+AlbumCover::AlbumCover()
+{
+}
+
 AlbumCover::AlbumCover(QString path)
 {
     if (path == "")

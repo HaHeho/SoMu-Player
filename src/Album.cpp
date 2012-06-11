@@ -6,12 +6,12 @@ Album::Album(QString path)
     // hier muss noch geparst werden
     this->name = "";
 
-    this->cover = AlbumCover(path);
+    setCover(path);
 }
 
 void Album::setCover(QString coverPath)
 {
-    this->cover = AlbumCover(coverPath);
+    //this->cover = AlbumCover(coverPath, 0);
 }
 
 AlbumTrack* Album::addTrack(QString trackPath)

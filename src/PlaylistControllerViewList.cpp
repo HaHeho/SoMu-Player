@@ -38,7 +38,9 @@ void PlaylistControllerViewList::handleDragObject(QString path)
     if (isMusicFile)
     {
         Album* album = new Album(path);
+        qDebug() << "Album erstellt";
         AlbumTrack* track = album->addTrack(path);
+        qDebug() << "Track erstellt";
         createPlayListItem(track);
     }
     else

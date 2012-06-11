@@ -8,6 +8,7 @@
 class AlbumCover
 {
 public:
+    AlbumCover();
     AlbumCover(QString path);
     QPixmap* getImage();
 

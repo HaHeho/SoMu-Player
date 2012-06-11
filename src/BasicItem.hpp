@@ -28,7 +28,6 @@ protected:
 
 signals:
 
-
 public slots:
 
 };

@@ -13,4 +13,7 @@
         <file alias="stop">res/Buttons/stop.png</file>
         <file alias="stop-on">res/Buttons/stop-on.png</file>
     </qresource>
+    <qresource prefix="/albums">
+        <file alias="no-cover">res/no cover.jpg</file>
+    </qresource>
 </RCC>

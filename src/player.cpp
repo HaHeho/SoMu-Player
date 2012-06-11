@@ -9,16 +9,21 @@ Player::Player(QGraphicsScene *pScene) : QGraphicsView(pScene)
 
     scv = new SoundControllerView(sc, ss, 500, 60);
     scene()->addItem(scv);
-    scv->setPos(100, 540);
+    scv->setPos(150, 540);
     scv->init();
 
     pc = new PlayListController(ss);
 
-    pcv = new PlaylistControllerView(pc, 200, 600);
-    pcv->setPos(600, 0);
-    pcv->initDragArea(scene());
-    scene()->addItem(pcv);
-    pcv->init();
+    pcvl = new PlaylistControllerViewList(pc, 150, 600);
+    pcvl->setPos(650, 0);
+    pcvl->initDragArea(scene());
+    scene()->addItem(pcvl);
+    pcvl->init();
+
+    pcvc = new PlaylistControllerViewCover(pc, 150, 150);
+    pcvc->setPos(0, 450);
+    scene()->addItem(pcvc);
+    pcvc->init();
 
     QTimer* timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updatePlayer()));

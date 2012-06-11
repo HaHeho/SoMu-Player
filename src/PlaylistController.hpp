@@ -12,7 +12,7 @@ class PlayListController : public QObject
 
 public:
     explicit PlayListController(SoundSystem *ss, QObject *parent = 0);
-    PlayListItem* addToPlaylist(QString soundPath);
+    PlayListItem* addToPlaylist(AlbumTrack* track);
     int getPlayListLength();
     PlayListItem* getItemAt(int i);
     void removeItemAt(int i);

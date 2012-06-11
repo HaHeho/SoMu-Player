@@ -1,13 +1,13 @@
-#include "PlaylistControllerView.hpp"
+#include "PlaylistControllerViewList.hpp"
 
 
-PlaylistControllerView::PlaylistControllerView(PlayListController *pc, float w, float h) : BasicItem(w, h)
+PlaylistControllerViewList::PlaylistControllerViewList(PlayListController *pc, float w, float h) : BasicItem(w, h)
 {
     this->playListController = pc;
 }
 
 
-void PlaylistControllerView::init()
+void PlaylistControllerViewList::init()
 {
     /*createPlayListItem("media/jaguar.wav");
     createPlayListItem("media/swish.wav");
@@ -15,7 +15,7 @@ void PlaylistControllerView::init()
 }
 
 
-void PlaylistControllerView::initDragArea(QGraphicsScene* areaParent)
+void PlaylistControllerViewList::initDragArea(QGraphicsScene* areaParent)
 {
     dragArea = new DragArea();
     dragArea->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
@@ -26,7 +26,7 @@ void PlaylistControllerView::initDragArea(QGraphicsScene* areaParent)
 }
 
 
-void PlaylistControllerView::handleDragObject(QString path)
+void PlaylistControllerViewList::handleDragObject(QString path)
 {
     qDebug() << "Got a new Drag! Path: " << path;
 
@@ -36,22 +36,26 @@ void PlaylistControllerView::handleDragObject(QString path)
     bool isMusicFile = path.indexOf(rx) != -1;
 
     if (isMusicFile)
-        createPlayListItem(path);
+    {
+        Album* album = new Album(path);
+        AlbumTrack* track = album->addTrack(path);
+        createPlayListItem(track);
+    }
     else
         qDebug() << "The File isnt a valid Musicfile.";
 }
 
 
-void PlaylistControllerView::createPlayListItem(QString soundPath)
+void PlaylistControllerViewList::createPlayListItem(AlbumTrack* track)
 {
-    PlayListItem* item = playListController->addToPlaylist(soundPath);
+    PlayListItem* item = playListController->addToPlaylist(track);
     item->setParentItem(this);
-    item->setPos(0, item->getHeight() * (playListController->getPlayListLength()-1));
+    item->setPos(0, item->getHeight() * (playListController->getPlayListLength() - 1));
     item->init();
 }
 
 
-void PlaylistControllerView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void PlaylistControllerViewList::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);

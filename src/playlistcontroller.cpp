@@ -7,10 +7,11 @@ PlayListController::PlayListController(SoundSystem *ss, QObject *parent) : QObje
 }
 
 
-PlayListItem* PlayListController::addToPlaylist(QString soundPath)
+PlayListItem* PlayListController::addToPlaylist(AlbumTrack* track)
 {
-    FMOD::Sound* newSound = soundSystem->createNewSound(soundPath.toStdString());
-    PlayListItem* item = new PlayListItem(newSound, 200, 20);
+    track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
+
+    PlayListItem* item = new PlayListItem(track, 150, 20);
     connect(item, SIGNAL(doubleClicked(PlayListItem*)), this, SLOT(startSound(PlayListItem*)));
     playList.append(item);
     return item;

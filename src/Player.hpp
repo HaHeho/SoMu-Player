@@ -7,7 +7,8 @@
 #include "SoundController.hpp"
 #include "SoundControllerView.hpp"
 #include "PlayListController.hpp"
-#include "PlaylistControllerView.hpp"
+#include "PlaylistControllerViewList.hpp"
+#include "PlaylistControllerViewCover.hpp"
 #include "SoundSystem.hpp"
 
 
@@ -23,7 +24,8 @@ private:
     SoundController* sc;
     SoundControllerView* scv;
     PlayListController* pc;
-    PlaylistControllerView* pcv;
+    PlaylistControllerViewList* pcvl;
+    PlaylistControllerViewCover* pcvc;
 
 signals:
 

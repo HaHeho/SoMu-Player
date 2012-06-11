@@ -4,9 +4,12 @@
 
 #include <stdio.h>
 #include <QtGui>
+#include <QDebug>
+#include <QObject>
+
 #include "SoundController.hpp"
 #include "SoundControllerView.hpp"
-#include "PlayListController.hpp"
+#include "PlaylistController.hpp"
 #include "PlaylistControllerViewList.hpp"
 #include "PlaylistControllerViewCover.hpp"
 #include "SoundSystem.hpp"
@@ -23,7 +26,7 @@ private:
     SoundSystem* ss;
     SoundController* sc;
     SoundControllerView* scv;
-    PlayListController* pc;
+    PlaylistController* pc;
     PlaylistControllerViewList* pcvl;
     PlaylistControllerViewCover* pcvc;
 

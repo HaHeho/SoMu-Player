@@ -1,17 +1,17 @@
 #include "PlaylistControllerViewList.hpp"
 
 
-PlaylistControllerViewList::PlaylistControllerViewList(PlayListController *pc, float w, float h) : BasicItem(w, h)
+PlaylistControllerViewList::PlaylistControllerViewList(PlaylistController* pc, float w, float h) : BasicItem(w, h)
 {
-    this->playListController = pc;
+    this->pc = pc;
 }
 
 
 void PlaylistControllerViewList::init()
 {
-    /*createPlayListItem("media/jaguar.wav");
-    createPlayListItem("media/swish.wav");
-    createPlayListItem("media/drumloop.wav");*/
+    /*createPlaylistItem("media/jaguar.wav");
+    createPlaylistItem("media/swish.wav");
+    createPlaylistItem("media/drumloop.wav");*/
 }
 
 
@@ -38,21 +38,19 @@ void PlaylistControllerViewList::handleDragObject(QString path)
     if (isMusicFile)
     {
         Album* album = new Album(path);
-        qDebug() << "Album erstellt";
         AlbumTrack* track = album->addTrack(path);
-        qDebug() << "Track erstellt";
-        createPlayListItem(track);
+        createPlaylistItem(track);
     }
     else
-        qDebug() << "The File isnt a valid Musicfile.";
+        qDebug() << "The file isn't a valid musicfile.";
 }
 
 
-void PlaylistControllerViewList::createPlayListItem(AlbumTrack* track)
+void PlaylistControllerViewList::createPlaylistItem(AlbumTrack* track)
 {
-    PlayListItem* item = playListController->addToPlaylist(track);
+    PlaylistItem* item = this->pc->addToPlaylist(track);
     item->setParentItem(this);
-    item->setPos(0, item->getHeight() * (playListController->getPlayListLength() - 1));
+    item->setPos(0, item->getHeight() * (this->pc->getPlayListLength() - 1));
     item->init();
 }
 

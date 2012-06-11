@@ -31,7 +31,6 @@ private:
     unsigned int duration;
     void parseTitle();
     void calculateDuration();
-
 };
 
 class Album

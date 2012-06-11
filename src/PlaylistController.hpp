@@ -4,29 +4,29 @@
 #include <QObject>
 #include "SoundSystem.hpp"
 #include "PlaylistItem.hpp"
+#include "PlaylistControllerViewCover.hpp"
 
 
-class PlayListController : public QObject
+class PlaylistController : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit PlayListController(SoundSystem *ss, QObject *parent = 0);
-    PlayListItem* addToPlaylist(AlbumTrack* track);
+    PlaylistController(SoundSystem* ss, QObject* parent = 0);
+    PlaylistItem* addToPlaylist(AlbumTrack* track);
     int getPlayListLength();
-    PlayListItem* getItemAt(int i);
+    PlaylistItem* getItemAt(int i);
     void removeItemAt(int i);
-
 
 private:
     SoundSystem* soundSystem;
-    QList<PlayListItem*> playList;
-
+    QList<PlaylistItem*> playList;
 
 signals:
+    void setPlaylistCover(QPixmap* cover);
 
 public slots:
-    void startSound(PlayListItem*);
+    void startSound(PlaylistItem* sender);
 };
 
 #endif // PLAYLIST_CONTROLLER_HPP

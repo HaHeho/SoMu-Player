@@ -1,43 +1,40 @@
 #include "PlaylistController.hpp"
 
 
-PlayListController::PlayListController(SoundSystem *ss, QObject *parent) : QObject(parent)
+PlaylistController::PlaylistController(SoundSystem *ss, QObject *parent) : QObject(parent)
 {
     this->soundSystem = ss;
 }
 
 
-PlayListItem* PlayListController::addToPlaylist(AlbumTrack* track)
+PlaylistItem* PlaylistController::addToPlaylist(AlbumTrack* track)
 {
     track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
 
-    PlayListItem* item = new PlayListItem(track, 150, 20);
-    connect(item, SIGNAL(doubleClicked(PlayListItem*)), this, SLOT(startSound(PlayListItem*)));
+    PlaylistItem* item = new PlaylistItem(track, 150, 20);
+    connect(item, SIGNAL(doubleClicked(PlaylistItem*)), this, SLOT(startSound(PlaylistItem*)));
     playList.append(item);
     return item;
 }
 
-
-void PlayListController::startSound(PlayListItem* sender)
+void PlaylistController::startSound(PlaylistItem* sender)
 {
     this->soundSystem->stopCurrentSound();
     this->soundSystem->playSound(sender->getSound());
+    emit setPlaylistCover(sender->getImage());
 }
 
-
-int PlayListController::getPlayListLength()
+int PlaylistController::getPlayListLength()
 {
     return playList.count();
 }
 
-
-PlayListItem* PlayListController::getItemAt(int i)
+PlaylistItem* PlaylistController::getItemAt(int i)
 {
     return playList.at(i);
 }
 
-
-void PlayListController::removeItemAt(int i)
+void PlaylistController::removeItemAt(int i)
 {
     playList.removeAt(i);
 }

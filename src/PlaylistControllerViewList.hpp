@@ -15,14 +15,14 @@ class PlaylistControllerViewList : public BasicItem
     Q_OBJECT
 
 public:
-    explicit PlaylistControllerViewList(PlayListController *pc, float w, float h);
+    explicit PlaylistControllerViewList(PlaylistController *pc, float w, float h);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void init();
     void initDragArea(QGraphicsScene* areaParent);
 
 private:
-    PlayListController* playListController;
-    void createPlayListItem(AlbumTrack* track);
+    PlaylistController* pc;
+    void createPlaylistItem(AlbumTrack* track);
     DragArea* dragArea;
 
 signals:

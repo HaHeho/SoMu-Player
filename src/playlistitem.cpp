@@ -1,7 +1,7 @@
-#include "PlayListItem.hpp"
+#include "PlaylistItem.hpp"
 
 
-PlayListItem::PlayListItem(AlbumTrack* track, float w, float h) : BasicItem(w, h)
+PlaylistItem::PlaylistItem(AlbumTrack* track, float w, float h) : BasicItem(w, h)
 {
     this->track = track;
     this->color = QColor(230, 100, 20);
@@ -25,11 +25,11 @@ PlayListItem::PlayListItem(AlbumTrack* track, float w, float h) : BasicItem(w, h
     this->durationText->setTextCursor(cursor);
 }
 
-void PlayListItem::init()
+void PlaylistItem::init()
 {
 }
 
-void PlayListItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void PlaylistItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
@@ -38,13 +38,18 @@ void PlayListItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->drawRect(boundingRect());
 }
 
-void PlayListItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void PlaylistItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED (event);
     emit doubleClicked(this);
 }
 
-FMOD::Sound* PlayListItem::getSound()
+FMOD::Sound* PlaylistItem::getSound()
 {
     return this->track->getSound();
+}
+
+QPixmap* PlaylistItem::getImage()
+{
+    return this->track->getCoverImage();
 }

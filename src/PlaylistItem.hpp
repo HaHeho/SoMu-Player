@@ -4,20 +4,20 @@
 
 #include <QtGui>
 #include "BasicItem.hpp"
-//#include "AlbumTrack.hpp"
 #include "Album.hpp"
 
 
-class PlayListItem : public BasicItem
+class PlaylistItem : public BasicItem
 {
     Q_OBJECT
 
 public:
-    explicit PlayListItem(AlbumTrack* track, float w, float h);
+    explicit PlaylistItem(AlbumTrack* track, float w, float h);
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event);
     FMOD::Sound* getSound();
+    QPixmap* getImage();
 
 private:
     AlbumTrack* track;
@@ -25,7 +25,7 @@ private:
     QGraphicsTextItem* durationText;
 
 signals:
-    void doubleClicked(PlayListItem* item);
+    void doubleClicked(PlaylistItem* item);
 
 public slots:
 

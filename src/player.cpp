@@ -1,7 +1,7 @@
 #include "Player.hpp"
 
 
-Player::Player(QGraphicsScene *pScene) : QGraphicsView(pScene)
+Player::Player(QGraphicsScene* pScene) : QGraphicsView(pScene)
 {
     ss = new SoundSystem();
 
@@ -12,7 +12,7 @@ Player::Player(QGraphicsScene *pScene) : QGraphicsView(pScene)
     scv->setPos(150, 540);
     scv->init();
 
-    pc = new PlayListController(ss);
+    pc = new PlaylistController(ss);
 
     pcvl = new PlaylistControllerViewList(pc, 150, 600);
     pcvl->setPos(650, 0);

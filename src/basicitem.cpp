@@ -23,7 +23,6 @@ QRectF BasicItem::boundingRect() const
 
 void BasicItem::init()
 {
-
 }
 
 

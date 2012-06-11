@@ -1,13 +1,13 @@
 #include "SoundController.hpp"
 
 
-SoundController::SoundController(SoundSystem* ss, QObject *parent) : QObject(parent)
+SoundController::SoundController(SoundSystem* ss, QObject* parent) : QObject(parent)
 {
     this->soundSystem = ss;
 }
 
 
-void SoundController::initPlayListController(PlayListController* plc)
+void SoundController::initPlaylistController(PlaylistController* plc)
 {
     this->playList = plc;
 }

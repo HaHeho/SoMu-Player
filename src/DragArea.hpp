@@ -15,24 +15,20 @@ class DragArea : public QLabel
 {
     Q_OBJECT
 
-
 public:
     DragArea(QWidget *parent = 0);
 
-
 private:
     QLabel *label;
-
-
-signals:
-    void dragAccepted(QString path);
-
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dragMoveEvent(QDragMoveEvent *event);
     void dragLeaveEvent(QDragLeaveEvent *event);
     void dropEvent(QDropEvent *event);
+
+signals:
+    void dragAccepted(QString path);
 };
 
 #endif // DRAG_AREA_HPP

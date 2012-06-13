@@ -1,26 +1,27 @@
 #include "PlaylistControllerViewCover.hpp"
 
 
-PlaylistControllerViewCover::PlaylistControllerViewCover(PlaylistController* pc, float w, float h) : BasicItem(w, h)
+PlaylistControllerViewCover::PlaylistControllerViewCover(float w, float h) : BasicItem(w, h)
 {
-    this->pc = pc;
-    connect(pc, SIGNAL(setPlaylistCover(QPixmap*)), this, SLOT(setImage(QImage*));
+    //setImage(new QPixmap(":/albums/no-cover"));
+    this->image = new QPixmap();
 }
 
 void PlaylistControllerViewCover::init()
 {
 }
 
-void PlaylistControllerViewCover::setImage(QImage* image)
+void PlaylistControllerViewCover::setImage(QPixmap* image)
 {
-    this->image = image;
+    qDebug() << "PlaylistControllerViewCover::setImage()";
+    this->image = new QPixmap(image->scaledToWidth(this->width));
 }
 
 void PlaylistControllerViewCover::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-    if (!this->image.isNull())
+    if (!(this->image)->isNull())
     {
-        painter->drawPixmap(boundingRect(), this->image, boundingRect());
+        painter->drawPixmap(boundingRect(), *(this->image), boundingRect());
     }
     else
     {

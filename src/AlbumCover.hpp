@@ -2,18 +2,18 @@
 #define ALBUM_COVER_HPP
 
 
+#include <QDebug>
 #include <QPixmap>
 
 
 class AlbumCover
 {
 public:
-    AlbumCover();
     AlbumCover(QString path);
     QPixmap* getImage();
 
 private:
-    QPixmap image;
+    QPixmap* image;
 };
 
 #endif // ALBUM_COVER_HPP

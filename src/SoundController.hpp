@@ -18,10 +18,12 @@ public:
 
 private:
     SoundSystem *soundSystem;
-    PlaylistController* playList;
+    PlaylistController* playlist;
 
 
 signals:
+    void playNext();
+
 
 public slots:
     void play();

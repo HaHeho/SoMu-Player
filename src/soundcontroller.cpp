@@ -9,33 +9,35 @@ SoundController::SoundController(SoundSystem* ss, QObject* parent) : QObject(par
 
 void SoundController::initPlaylistController(PlaylistController* plc)
 {
-    this->playList = plc;
+    this->playlist = plc;
+    connect(this, SIGNAL(playNext()), this->playlist, SLOT(startNextSound()));
 }
 
 
 void SoundController::play()
 {
-    qDebug() << "play";
+    qDebug() << "SoundController::play()";
     soundSystem->resumeCurrentSound();
 }
 
 
 void SoundController::pause()
 {
-    qDebug() << "pause";
+    qDebug() << "SoundController::pause()";
     soundSystem->pauseCurrentSound();
 }
 
 
 void SoundController::next()
 {
-    qDebug() << "next";
+    qDebug() << "SoundController::next()";
+    emit playNext();
 }
 
 
 void SoundController::prev()
 {
-    qDebug() << "prev";
+    qDebug() << "SoundController::prev()";
 }
 
 

@@ -25,8 +25,11 @@ private:
     QGraphicsTextItem* progressText;
     bool sliderMoveActivated;
 
+    void checkTrackEnded();
+
 
 signals:
+    void currentTrackEnded();
 
 
 public slots:

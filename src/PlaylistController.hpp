@@ -18,15 +18,22 @@ public:
     PlaylistItem* getItemAt(int i);
     void removeItemAt(int i);
 
+
 private:
-    SoundSystem* soundSystem;
+    SoundSystem*         soundSystem;
     QList<PlaylistItem*> playList;
+    int                  currentIndex;
+
+    void updateItemColors();
+
 
 signals:
     void setPlaylistCover(QPixmap* cover);
 
+
 public slots:
     void startSound(PlaylistItem* sender);
+    void startNextSound();
 };
 
 #endif // PLAYLIST_CONTROLLER_HPP

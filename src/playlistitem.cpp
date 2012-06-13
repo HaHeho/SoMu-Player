@@ -3,8 +3,12 @@
 
 PlaylistItem::PlaylistItem(AlbumTrack* track, float w, float h) : BasicItem(w, h)
 {
-    this->track = track;
+    this->status = this->FUTURE;
+    this->colorNow = QColor(100, 230, 20);
+    this->colorPast = QColor(230, 230, 230);
     this->color = QColor(230, 100, 20);
+
+    this->track = track;
 
     //create Textfield for the Name
     this->titleText = new QGraphicsTextItem(this);
@@ -34,11 +38,19 @@ void PlaylistItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* opti
     Q_UNUSED(option);
     Q_UNUSED(widget);
     painter->setPen(QPen(Qt::black, 1));
-    painter->setBrush(QBrush(color));
+
+    QColor c;
+    if (this->status == this->PAST)
+        c = this->colorPast;
+    else if (this->status == this->NOW)
+        c = this->colorNow;
+    else if (this->status == this->FUTURE)
+        c = this->color;
+    painter->setBrush(QBrush(c));
     painter->drawRect(boundingRect());
 }
 
-void PlaylistItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void PlaylistItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
     Q_UNUSED (event);
     emit doubleClicked(this);
@@ -49,7 +61,12 @@ FMOD::Sound* PlaylistItem::getSound()
     return this->track->getSound();
 }
 
-QPixmap* PlaylistItem::getImage()
+QPixmap* PlaylistItem::getCoverImage()
 {
     return this->track->getCoverImage();
+}
+
+void PlaylistItem::setStatus(Status newStatus)
+{
+    this->status = newStatus;
 }

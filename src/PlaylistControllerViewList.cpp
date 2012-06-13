@@ -9,9 +9,28 @@ PlaylistControllerViewList::PlaylistControllerViewList(PlaylistController* pc, f
 
 void PlaylistControllerViewList::init()
 {
-    /*createPlaylistItem("media/jaguar.wav");
-    createPlaylistItem("media/swish.wav");
-    createPlaylistItem("media/drumloop.wav");*/
+    ///*
+    Album* album = new Album("");
+    QString path1 = "C:/Users/User/Documents/Git-Projekte/SoMu-Player/media/jaguar.wav";
+    AlbumTrack* track1 = album->addTrack(path1);
+    createPlaylistItem(track1);
+    QString path2 = "C:/Users/User/Documents/Git-Projekte/SoMu-Player/media/wave.mp3";
+    AlbumTrack* track2 = album->addTrack(path2);
+    createPlaylistItem(track2);
+    QString path3 = "C:/Users/User/Documents/Git-Projekte/SoMu-Player/media/stereo.ogg";
+    AlbumTrack* track3 = album->addTrack(path3);
+    createPlaylistItem(track3);
+    //*/
+
+    /*
+    Album* album = new Album("");
+    AlbumTrack* track1 = album->addTrack(":/tracks/jaguar.wav");
+    createPlaylistItem(track1);
+    AlbumTrack* track2 = album->addTrack(":/tracks/wave.mp3");
+    createPlaylistItem(track2);
+    AlbumTrack* track3 = album->addTrack(":/tracks/stereo.ogg");
+    createPlaylistItem(track3);
+    */
 }
 
 
@@ -28,7 +47,7 @@ void PlaylistControllerViewList::initDragArea(QGraphicsScene* areaParent)
 
 void PlaylistControllerViewList::handleDragObject(QString path)
 {
-    qDebug() << "Got a new Drag! Path: " << path;
+    qDebug() << "PlaylistControllerViewList::handleDragObject() " << path;
 
     QRegExp rx("(?:\\.wav|\\.mp3|\\.ogg)");
     rx.setCaseSensitivity(Qt::CaseInsensitive);

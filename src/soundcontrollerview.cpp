@@ -37,6 +37,8 @@ void SoundControllerView::init()
     progressText = new QGraphicsTextItem(this);
     progressText->setTextWidth(100);
     progressText->setPos(getWidth()-100, 8);
+
+    connect(this, SIGNAL(currentTrackEnded()), soundController, SLOT(next()));
 }
 
 
@@ -62,8 +64,16 @@ void SoundControllerView::updateView()
     cursor.setBlockFormat(bfmt);
     progressText->setTextCursor(cursor);
 
+    checkTrackEnded();
 }
 
+void SoundControllerView::checkTrackEnded()
+{
+    if (this->soundSystem->getCurPositionInPerc() >= 1.0)
+    {
+        emit currentTrackEnded();
+    }
+}
 
 void SoundControllerView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {

@@ -12,15 +12,21 @@ class PlaylistItem : public BasicItem
     Q_OBJECT
 
 public:
+    enum Status {PAST, NOW, FUTURE};
+
     explicit PlaylistItem(AlbumTrack* track, float w, float h);
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event);
     FMOD::Sound* getSound();
-    QPixmap* getImage();
+    QPixmap* getCoverImage();
+    void setStatus(Status newStatus);
 
 private:
-    AlbumTrack* track;
+    Status             status;
+    QColor             colorNow;
+    QColor             colorPast;
+    AlbumTrack*        track;
     QGraphicsTextItem* titleText;
     QGraphicsTextItem* durationText;
 

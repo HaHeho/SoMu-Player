@@ -5,14 +5,15 @@ Player::Player(QGraphicsScene* pScene) : QGraphicsView(pScene)
 {
     ss = new SoundSystem();
 
+    pc = new PlaylistController(ss);
+
     sc = new SoundController(ss);
+    sc->initPlaylistController(pc);
 
     scv = new SoundControllerView(sc, ss, 500, 60);
     scene()->addItem(scv);
     scv->setPos(150, 540);
     scv->init();
-
-    pc = new PlaylistController(ss);
 
     pcvl = new PlaylistControllerViewList(pc, 150, 600);
     pcvl->setPos(650, 0);
@@ -20,7 +21,7 @@ Player::Player(QGraphicsScene* pScene) : QGraphicsView(pScene)
     scene()->addItem(pcvl);
     pcvl->init();
 
-    pcvc = new PlaylistControllerViewCover(pc, 150, 150);
+    pcvc = new PlaylistControllerViewCover(150, 150);
     pcvc->setPos(0, 450);
     scene()->addItem(pcvc);
     pcvc->init();
@@ -28,6 +29,8 @@ Player::Player(QGraphicsScene* pScene) : QGraphicsView(pScene)
     QTimer* timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updatePlayer()));
     timer->start(1000 / 60);
+
+    connect(pc, SIGNAL(setPlaylistCover(QPixmap*)), pcvc, SLOT(setImage(QPixmap*)));
 }
 
 

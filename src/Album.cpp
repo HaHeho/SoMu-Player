@@ -11,7 +11,8 @@ Album::Album(QString path)
 
 void Album::setCover(QString coverPath)
 {
-    //this->cover = AlbumCover(coverPath, 0);
+    // hier muss noch geparst werden
+    this->cover = new AlbumCover(coverPath);
 }
 
 AlbumTrack* Album::addTrack(QString trackPath)
@@ -24,5 +25,5 @@ AlbumTrack* Album::addTrack(QString trackPath)
 
 QPixmap* Album::getCoverImage()
 {
-    return this->cover.getImage();
+    return this->cover->getImage();
 }

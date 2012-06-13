@@ -11,16 +11,15 @@ class PlaylistControllerViewCover : public BasicItem
     Q_OBJECT
 
 public:
-    PlaylistControllerViewCover(PlaylistController* pc, float w, float h);
+    explicit PlaylistControllerViewCover(float w, float h);
     virtual void init();
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 
 private:
-    PlaylistController* pc;
-    QImage* image;
+    QPixmap* image;
 
 public slots:
-    void setImage(QImage* image);
+    void setImage(QPixmap* image);
 
 signals:
 

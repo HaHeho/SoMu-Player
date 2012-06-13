@@ -16,4 +16,9 @@
     <qresource prefix="/albums">
         <file alias="no-cover">res/no cover.jpg</file>
     </qresource>
+    <qresource prefix="/tracks">
+        <file alias="jaguar.wav">media/jaguar.wav</file>
+        <file alias="stereo.ogg">media/stereo.ogg</file>
+        <file alias="wave.mp3">media/wave.mp3</file>
+    </qresource>
 </RCC>

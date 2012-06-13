@@ -2,6 +2,7 @@
 #define ALBUM_HPP
 
 
+#include <QDebug>
 #include <QPixmap>
 #include "fmod.hpp"
 #include "AlbumCover.hpp"
@@ -43,7 +44,7 @@ public:
 
 private:
     QString            name;
-    AlbumCover         cover;
+    AlbumCover*        cover;
     QList<AlbumTrack*> trackList;
 };
 

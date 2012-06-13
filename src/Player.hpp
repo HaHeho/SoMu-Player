@@ -15,6 +15,7 @@
 #include "PlaylistControllerViewCover.hpp"
 #include "ExplorerView.hpp"
 #include "ExplorerTreeView.hpp"
+#include "ExplorerController.hpp"
 
 
 class Player : public QGraphicsView
@@ -34,6 +35,7 @@ private:
     PlaylistControllerViewCover* pcvc;
     ExplorerView*                ev;
     ExplorerTreeView*            etv;
+    ExplorerController*          ec;
 
 signals:
 

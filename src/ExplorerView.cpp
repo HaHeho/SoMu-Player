@@ -1,5 +1,6 @@
 #include "ExplorerView.hpp"
 
+
 ExplorerView::ExplorerView(float w, float h) : BasicItem(w, h)
 {
     setBackgroundColor(QColor(240, 240, 240));

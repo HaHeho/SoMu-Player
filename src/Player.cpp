@@ -46,6 +46,8 @@ Player::Player(QGraphicsScene* qScene) : QGraphicsView(qScene)
     scene->addItem(etv);
     etv->setPos(0, 0);
     etv->init();
+
+    ec = new ExplorerController(ev, etv);
 }
 
 

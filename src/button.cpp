@@ -3,7 +3,7 @@
 
 Button::Button(float w, float h) : BasicItem(w, h)
 {
-    mouseOver = false;
+    this->mouseOver = false;
 }
 
 

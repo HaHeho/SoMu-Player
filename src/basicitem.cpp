@@ -17,7 +17,7 @@ void BasicItem::setBackgroundColor(QColor bgColor)
 
 QRectF BasicItem::boundingRect() const
 {
-    return QRectF(0,0,width,height);
+    return QRectF(0, 0, width, height);
 }
 
 

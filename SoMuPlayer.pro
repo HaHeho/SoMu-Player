@@ -36,7 +36,9 @@ SOURCES += main.cpp\
     src/PlaylistControllerViewCover.cpp \
     src/AlbumCover.cpp \
     src/Album.cpp \
-    src/AlbumTrack.cpp
+    src/AlbumTrack.cpp \
+    src/ExplorerView.cpp \
+    src/ExplorerTreeView.cpp
 
 HEADERS  += \
     src/SoundSystem.hpp \
@@ -52,9 +54,9 @@ HEADERS  += \
     src/PlaylistControllerViewCover.hpp \
     src/AlbumCover.hpp \
     src/Album.hpp \
-    src/AlbumTrack.hpp
-
-FORMS    += mainwindow.ui
+    src/AlbumTrack.hpp \
+    src/ExplorerView.hpp \
+    src/ExplorerTreeView.hpp
 
 RESOURCES += \
     ressources.qrc

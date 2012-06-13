@@ -4,6 +4,7 @@
 PlaylistControllerViewList::PlaylistControllerViewList(PlaylistController* pc, float w, float h) : BasicItem(w, h)
 {
     this->pc = pc;
+    setBackgroundColor(QColor(200, 200, 200));
 }
 
 

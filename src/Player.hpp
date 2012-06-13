@@ -7,12 +7,14 @@
 #include <QDebug>
 #include <QObject>
 
+#include "SoundSystem.hpp"
 #include "SoundController.hpp"
 #include "SoundControllerView.hpp"
 #include "PlaylistController.hpp"
 #include "PlaylistControllerViewList.hpp"
 #include "PlaylistControllerViewCover.hpp"
-#include "SoundSystem.hpp"
+#include "ExplorerView.hpp"
+#include "ExplorerTreeView.hpp"
 
 
 class Player : public QGraphicsView
@@ -20,15 +22,18 @@ class Player : public QGraphicsView
     Q_OBJECT
 
 public:
-    Player(QGraphicsScene *scene);
+    Player(QGraphicsScene* qScene);
 
 private:
-    SoundSystem* ss;
-    SoundController* sc;
-    SoundControllerView* scv;
-    PlaylistController* pc;
-    PlaylistControllerViewList* pcvl;
+    QGraphicsScene*              scene;
+    SoundSystem*                 ss;
+    SoundController*             sc;
+    SoundControllerView*         scv;
+    PlaylistController*          pc;
+    PlaylistControllerViewList*  pcvl;
     PlaylistControllerViewCover* pcvc;
+    ExplorerView*                ev;
+    ExplorerTreeView*            etv;
 
 signals:
 

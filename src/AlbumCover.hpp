@@ -14,6 +14,7 @@ public:
 
 private:
     QPixmap* image;
+    QPixmap* parseImage(QString path);
 };
 
 #endif // ALBUM_COVER_HPP

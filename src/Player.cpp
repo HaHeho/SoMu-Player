@@ -42,12 +42,12 @@ Player::Player(QGraphicsScene* qScene) : QGraphicsView(qScene)
     ev->setPos(150, 0);
     ev->init();
 
-    etv = new ExplorerTreeView(150, 450);
-    scene->addItem(etv);
-    etv->setPos(0, 0);
+    etv = new ExplorerTreeView(this);
+    etv->setGeometry(0, 0, 150, 450);
     etv->init();
 
-    ec = new ExplorerController(ev, etv);
+    ec = new ExplorerController(ss, ev, etv);
+    ec->init();
 }
 
 

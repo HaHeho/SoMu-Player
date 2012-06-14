@@ -4,26 +4,28 @@
 
 AlbumTrack::AlbumTrack(Album* album, QString trackPath)
 {
-    this->album = album;
     this->path = trackPath;
+    this->number = 1;
+    this->artist = "Unknown Artist";
+    this->album = album;
+    this->genre = "Unknown Genre";
 }
 
 void AlbumTrack::setSound(FMOD::Sound* sound)
 {
     this->sound = sound;
-
-    parseTitle();
+    this->title = parseTitle(sound);
     calculateDuration();
 }
 
-void AlbumTrack::parseTitle()
+QString AlbumTrack::parseTitle(FMOD::Sound* sound)
 {
     QRegExp rx("\\..*");
     char name[100];
-    this->sound->getName(name, 100);
+    sound->getName(name, 100);
     QString strName = QString(name);
     strName.remove(rx);
-    this->title = strName;
+    return strName;
 }
 
 void AlbumTrack::calculateDuration()
@@ -34,6 +36,11 @@ void AlbumTrack::calculateDuration()
 QString AlbumTrack::getPath()
 {
     return this->path;
+}
+
+unsigned int AlbumTrack::getNumber()
+{
+    return this->number;
 }
 
 FMOD::Sound* AlbumTrack::getSound()
@@ -49,6 +56,21 @@ QPixmap* AlbumTrack::getCoverImage()
 QString AlbumTrack::getTitle()
 {
     return this->title;
+}
+
+QString AlbumTrack::getArtist()
+{
+    return this->artist;
+}
+
+QString AlbumTrack::getGenre()
+{
+    return this->genre;
+}
+
+Album *AlbumTrack::getAlbum()
+{
+    return this->album;
 }
 
 unsigned int AlbumTrack::getDuration()

@@ -18,3 +18,8 @@ void ExplorerView::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setBrush(QBrush(color));
     painter->drawRect(boundingRect());
 }
+
+void ExplorerView::addItem(AlbumTrack* track)
+{
+
+}

@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     src/Album.cpp \
     src/AlbumTrack.cpp \
     src/ExplorerView.cpp \
-    src/ExplorerTreeView.cpp
+    src/ExplorerTreeView.cpp \
+    src/ExplorerController.cpp
 
 HEADERS  += \
     src/SoundSystem.hpp \
@@ -56,7 +57,8 @@ HEADERS  += \
     src/Album.hpp \
     src/AlbumTrack.hpp \
     src/ExplorerView.hpp \
-    src/ExplorerTreeView.hpp
+    src/ExplorerTreeView.hpp \
+    src/ExplorerController.hpp
 
 RESOURCES += \
     ressources.qrc

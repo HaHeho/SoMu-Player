@@ -3,6 +3,7 @@
 
 
 #include "BasicItem.hpp"
+#include "AlbumTrack.hpp"
 
 
 class ExplorerView : public BasicItem
@@ -15,6 +16,7 @@ public:
     explicit ExplorerView(float w, float h);
     virtual void init();
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+    void addItem(AlbumTrack* track);
 
 private:
 

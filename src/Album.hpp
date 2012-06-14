@@ -18,19 +18,27 @@ public:
     AlbumTrack(Album* album, QString trackPath);
     void setSound(FMOD::Sound* sound);
 
-    QString getPath();
-    QString getTitle();
+    QString      getPath();
+    unsigned int getNumber();
+    QString      getTitle();
+    QString      getArtist();
+    QString      getGenre();
+    Album*       getAlbum();
     FMOD::Sound* getSound();
-    QPixmap* getCoverImage();
     unsigned int getDuration();
+    QPixmap*     getCoverImage();
 
 private:
     QString      path;
-    Album*       album;
+    unsigned int number;
     QString      title;
+    QString      artist;
+    QString      genre;
+    Album*       album;
     FMOD::Sound* sound;
     unsigned int duration;
-    void parseTitle();
+
+    QString parseTitle(FMOD::Sound* sound);
     void calculateDuration();
 };
 
@@ -38,14 +46,17 @@ class Album
 {
 public:
     Album(QString path);
-    void setCover(QString coverPath);
     AlbumTrack* addTrack(QString trackPath);
+
+    QString  getName();
     QPixmap* getCoverImage();
 
 private:
     QString            name;
     AlbumCover*        cover;
-    QList<AlbumTrack*> trackList;
+    QList<AlbumTrack*> tracklist;
+
+    QString parseName(QString path);
 };
 
 

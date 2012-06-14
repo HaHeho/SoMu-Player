@@ -3,22 +3,19 @@
 
 Album::Album(QString path)
 {
-    // hier muss noch geparst werden
-    this->name = "";
-
-    setCover(path);
+    this->name = parseName(path);
+    this->cover = new AlbumCover(path);
 }
 
-void Album::setCover(QString coverPath)
+QString Album::getName()
 {
-    // hier muss noch geparst werden
-    this->cover = new AlbumCover(coverPath);
+    return this->name;
 }
 
 AlbumTrack* Album::addTrack(QString trackPath)
 {
     AlbumTrack* track = new AlbumTrack(this, trackPath);
-    this->trackList.append(track);
+    this->tracklist.append(track);
 
     return track;
 }
@@ -26,4 +23,13 @@ AlbumTrack* Album::addTrack(QString trackPath)
 QPixmap* Album::getCoverImage()
 {
     return this->cover->getImage();
+}
+
+QString Album::parseName(QString path)
+{
+    if (path == "")
+        return "Unknown Album";
+    else
+        // hier muss noch geparst werden
+        return "Parsed Album Name";
 }

@@ -15,8 +15,8 @@ class PlaylistControllerViewList : public BasicItem
     Q_OBJECT
 
 public:
-    explicit PlaylistControllerViewList(PlaylistController *pc, float w, float h);
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    explicit PlaylistControllerViewList(PlaylistController* pc, float w, float h);
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
     void initDragArea(QGraphicsScene* areaParent);
 

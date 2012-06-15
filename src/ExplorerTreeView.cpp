@@ -39,34 +39,38 @@ void ExplorerTreeView::sort()
 
 void ExplorerTreeView::addItem(AlbumTrack* track)
 {
-    addTitle(track->getTitle());
-    addAlbum(track->getAlbum()->getName());
-    addArtist(track->getArtist());
-    addGenre(track->getGenre());
-    sort();
+    QString album = track->getAlbum()->getName();
+    addElement(this->categoryTitles, track->getTitle());
+    addElement(this->categoryAlbums, album);
+    addElementWithChild(this->categoryArtists, track->getArtist(), album);
+    addElementWithChild(this->categoryGenres, track->getGenre(), album);
+    //sort();
 }
 
-void ExplorerTreeView::addTitle(QString title)
+int ExplorerTreeView::checkIfElementExists(QTreeWidgetItem* parent, QString& element)
 {
-    QTreeWidgetItem* item = new QTreeWidgetItem(QStringList(title));
-    categoryTitles->addChild(item);
+    for (int i = 0; i < parent->childCount(); i++)
+    {
+        if (parent->child(i)->text(0) == element)
+            return i;
+    }
+    return -1;
 }
 
-void ExplorerTreeView::addAlbum(QString album)
+void ExplorerTreeView::addElement(QTreeWidgetItem* parent, QString& element)
 {
-    QTreeWidgetItem* item = new QTreeWidgetItem(QStringList(album));
-    categoryAlbums->addChild(item);
+    if (checkIfElementExists(parent, element) < 0)
+        parent->addChild(new QTreeWidgetItem(QStringList(element)));
 }
 
-void ExplorerTreeView::addArtist(QString artist)
+void ExplorerTreeView::addElementWithChild(QTreeWidgetItem* parent, QString& element, QString& child)
 {
-    QTreeWidgetItem* item = new QTreeWidgetItem(QStringList(artist));
-    categoryArtists->addChild(item);
-}
+    int index = checkIfElementExists(parent, element);
+    if (index < 0)
+    {
+        parent->addChild(new QTreeWidgetItem(QStringList(element)));
+        index = 0;
+    }
 
-void ExplorerTreeView::addGenre(QString genre)
-{
-    QTreeWidgetItem* item = new QTreeWidgetItem(QStringList(genre));
-    categoryGenres->addChild(item);
+    addElement(parent->child(index), child);
 }
-

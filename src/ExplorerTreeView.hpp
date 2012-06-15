@@ -20,18 +20,15 @@ public:
     void addItem(AlbumTrack* track);
 
 private:
-    QList<QString*> listedArtists;
-    QList<QString*> listedGenres;
-
     QTreeWidgetItem* categoryTitles;
     QTreeWidgetItem* categoryAlbums;
     QTreeWidgetItem* categoryArtists;
     QTreeWidgetItem* categoryGenres;
 
-    void addTitle(QString title);
-    void addAlbum(QString album);
-    void addArtist(QString artist);
-    void addGenre(QString genre);
+    void addElement(QTreeWidgetItem* parent, QString& element);
+    void addElementWithChild(QTreeWidgetItem* parent, QString& element, QString& child);
+
+    int checkIfElementExists(QTreeWidgetItem* parent, QString& element);
 
     void sort();
 

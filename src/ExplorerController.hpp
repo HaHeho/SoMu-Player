@@ -21,6 +21,7 @@ public:
     void init();
 
 private:
+    QStringList        musicFilters;
     SoundSystem*       soundSystem;
     QList<AlbumTrack*> library;
     ExplorerView*      view;

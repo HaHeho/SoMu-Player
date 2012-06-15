@@ -7,6 +7,8 @@ ExplorerController::ExplorerController(SoundSystem* soundSystem, ExplorerView* v
     this->soundSystem = soundSystem;
     this->view = view;
     this->treeView = treeView;
+
+    this->musicFilters << "*.mp3" << "*.wav" << "*.wma" << "*.ogg" << "*.wmv" << "*.flac";
 }
 
 void ExplorerController::init()
@@ -16,30 +18,31 @@ void ExplorerController::init()
 
 void ExplorerController::initMusicLibrary()
 {
-    //addFolderToLibrary("../SoMu-Player/media/Bad (Michael Jackson)");
-
-    addItemToLibrary("../SoMu-Player/media/Bad (Michael Jackson)/1 Bad - Michael Jackson (Bad).mp3");
-    addItemToLibrary("../SoMu-Player/media/Bad (Michael Jackson)/2 The Way You Make Me Feel - Michael Jackson (Bad).mp3");
-
+    addFolderToLibrary("../SoMu-Player/media/Bad (Michael Jackson)/");
 }
 
 void ExplorerController::addFolderToLibrary(QString folderPath)
 {
-    QFileSystemModel* fsm = new QFileSystemModel();
-    fsm->setRootPath(folderPath);
-    /*
-    for (QModelIndex i = QModelIndex() 0; i < fsm->rowCount(); i++)
+    QDir dir = QDir(folderPath);
+    dir.setFilter(QDir::NoDotAndDotDot | QDir::Files);
+
+    QStringList files = dir.entryList(this->musicFilters);
+    for (int i = 0; i < files.size(); i++)
     {
-        qDebug() << "found file: " << fsm->fileName(i);
+        addItemToLibrary(folderPath + files.at(i));
     }
-    */
 }
 
 void ExplorerController::addItemToLibrary(QString path)
 {
+    qDebug() << "ExplorerController::addItemToLibrary(QString path)";
+    qDebug() << path;
+
     Album* album = new Album(path);
     AlbumTrack* track = new AlbumTrack(album, path);
     track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
+
+    this->library.append(track);
     this->view->addItem(track);
     this->treeView->addItem(track);
 }

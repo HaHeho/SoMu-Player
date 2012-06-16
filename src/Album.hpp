@@ -53,13 +53,18 @@ public:
     Album(QString path);
     AlbumTrack* addTrack(QString trackPath);
 
-    QString  getName();
-    QPixmap* getCoverImage();
+    void setLibraryIndex(unsigned int index);
+
+    QString            getName();
+    QPixmap*           getCoverImage();
+    QList<AlbumTrack*> getTracklist();
+    unsigned int       getLibraryIndex();
 
 private:
     QString            name;
     AlbumCover*        cover;
     QList<AlbumTrack*> tracklist;
+    unsigned int       libraryIndex;
 
     QString parseName(QString path);
 };

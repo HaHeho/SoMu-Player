@@ -20,9 +20,24 @@ AlbumTrack* Album::addTrack(QString trackPath)
     return track;
 }
 
+void Album::setLibraryIndex(unsigned int index)
+{
+    this->libraryIndex = index;
+}
+
 QPixmap* Album::getCoverImage()
 {
     return this->cover->getImage();
+}
+
+QList<AlbumTrack*> Album::getTracklist()
+{
+    return this->tracklist;
+}
+
+unsigned int Album::getLibraryIndex()
+{
+    return this->libraryIndex;
 }
 
 QString Album::parseName(QString path)

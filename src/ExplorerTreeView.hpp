@@ -31,9 +31,10 @@ private:
     void sort();
 
 public slots:
-
+    void myDoubleClicked(QTreeWidgetItem* item, int col);
 
 signals:
+    void showAlbum(int index);
 
 };
 

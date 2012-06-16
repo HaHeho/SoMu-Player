@@ -19,6 +19,7 @@ public:
     ExplorerView(QWidget* parent = 0);
     void init();
     void addItem(AlbumTrack* track);
+    void showAlbum(Album* album);
 
 private:
 

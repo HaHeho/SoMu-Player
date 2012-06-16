@@ -41,8 +41,19 @@ void ExplorerView::addItem(AlbumTrack* track)
             this, SLOT(myDoubleClicked(QTreeWidgetItem*,int)), Qt::UniqueConnection);
 }
 
+void ExplorerView::showAlbum(Album* album)
+{
+    this->clear();
+
+    QList<AlbumTrack*> list = album->getTracklist();
+    for (int i = 0; i < list.size(); i++)
+    {
+        addItem(list.at(i));
+    }
+}
+
 void ExplorerView::myDoubleClicked(QTreeWidgetItem* item, int /*col*/)
 {
-    // 6th column ist number of index
+    // 7th column ist number of index
     emit playItem(item->text(6).toInt());
 }

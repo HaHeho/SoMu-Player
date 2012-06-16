@@ -8,7 +8,7 @@ ExplorerTreeView::ExplorerTreeView(QWidget* parent)
 
 void ExplorerTreeView::init()
 {
-    this->setColumnCount(1);
+    this->setColumnCount(2);
     this->setHeaderHidden(true);
     this->setAnimated(true);
 
@@ -37,6 +37,12 @@ void ExplorerTreeView::sort()
     this->categoryGenres->sortChildren(0, Qt::AscendingOrder);
 }
 
+void ExplorerTreeView::myDoubleClicked(QTreeWidgetItem* item, int /*col*/)
+{
+    // 2nd column ist number of index
+    emit showAlbum(item->text(1).toInt());
+}
+
 void ExplorerTreeView::addItem(AlbumTrack* track)
 {
     addElement(this->categoryTitles, track->getTitle());
@@ -59,11 +65,18 @@ int ExplorerTreeView::checkIfElementExists(QTreeWidgetItem* parent, QString& ele
 void ExplorerTreeView::addElement(QTreeWidgetItem* parent, QString& element)
 {
     if (checkIfElementExists(parent, element) < 0)
-        parent->addChild(new QTreeWidgetItem(QStringList(element)));
+    {
+        QTreeWidgetItem* item = new QTreeWidgetItem(QStringList(element));
+        parent->addChild(item);
+
+        connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+                this, SLOT(myDoubleClicked(QTreeWidgetItem*,int)), Qt::UniqueConnection);
+    }
 }
 
 void ExplorerTreeView::addElementWithChild(QTreeWidgetItem* parent, QString& element, QString& child)
 {
+    // if element doesn't exist ... new one is created
     int index = checkIfElementExists(parent, element);
     if (index < 0)
     {

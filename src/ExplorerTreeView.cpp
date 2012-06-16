@@ -75,6 +75,9 @@ void ExplorerTreeView::addAlbum(QTreeWidgetItem* parent, Album* album)
 
         connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
                 this, SLOT(myDoubleClicked(QTreeWidgetItem*,int)), Qt::UniqueConnection);
+
+        connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+                this, SLOT(myDoubleClicked(QTreeWidgetItem*,int)), Qt::UniqueConnection);
     }
 }
 

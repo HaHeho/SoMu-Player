@@ -17,10 +17,12 @@ class ExplorerController : public QObject
     Q_OBJECT
 
 public:
-    ExplorerController(SoundSystem* soundSystem, ExplorerView* view, ExplorerTreeView* treeView, QObject* parent = 0);
+    ExplorerController(PlaylistController* playlistController, SoundSystem* soundSystem, ExplorerView* view, ExplorerTreeView* treeView, QObject* parent = 0);
     void init();
 
 private:
+    PlaylistController* playlistController;
+
     QStringList        musicFilters;
     SoundSystem*       soundSystem;
     QList<AlbumTrack*> library;
@@ -34,6 +36,7 @@ private:
 signals:
 
 public slots:
+    void playItem(int index);
 
 };
 

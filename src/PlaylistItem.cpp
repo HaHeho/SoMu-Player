@@ -56,6 +56,11 @@ void PlaylistItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
     emit doubleClicked(this);
 }
 
+void PlaylistItem::emitDoubleClicked()
+{
+    emit doubleClicked(this);
+}
+
 FMOD::Sound* PlaylistItem::getSound()
 {
     return this->track->getSound();

@@ -17,7 +17,8 @@ void SoundControllerView::init()
     playBtn->setPos(100, height/2-26);
     playBtn->setNormalImage(":/images/play");
     playBtn->setRolloverImage(":/images/play-on");
-    connect(playBtn, SIGNAL(clicked()), soundController, SLOT(play()));
+    connect(playBtn, SIGNAL(clicked()),
+            soundController, SLOT(play()), Qt::DirectConnection);
 
     Button *pauseBtn = new Button(32, 32);
     pauseBtn->setParentItem(this);
@@ -25,20 +26,24 @@ void SoundControllerView::init()
     pauseBtn->setPos(200, height/2-26);
     pauseBtn->setNormalImage(":/images/pause");
     pauseBtn->setRolloverImage(":/images/pause-on");
-    connect(pauseBtn, SIGNAL(clicked()), soundController, SLOT(pause()));
+    connect(pauseBtn, SIGNAL(clicked()),
+            soundController, SLOT(pause()), Qt::DirectConnection);
 
     progressSlider = new QSlider(Qt::Horizontal);
     scene()->addWidget(progressSlider);
     progressSlider->setGeometry(this->x(), this->y()+40, this->width, 20);
     progressSlider->setMaximum(1000);
-    connect(progressSlider, SIGNAL(sliderPressed()), this, SLOT(enableSliderMoveMode()));
-    connect(progressSlider, SIGNAL(sliderReleased()), this, SLOT(disableSliderMoveMode()));
+    connect(progressSlider, SIGNAL(sliderPressed()),
+            this, SLOT(enableSliderMoveMode()), Qt::DirectConnection);
+    connect(progressSlider, SIGNAL(sliderReleased()),
+            this, SLOT(disableSliderMoveMode()), Qt::DirectConnection);
 
     progressText = new QGraphicsTextItem(this);
     progressText->setTextWidth(100);
-    progressText->setPos(getWidth()-100, 8);
+    progressText->setPos(getWidth() - 100, 8);
 
-    connect(this, SIGNAL(currentTrackEnded()), soundController, SLOT(next()));
+    connect(this, SIGNAL(currentTrackEnded()),
+            soundController, SLOT(next()), Qt::DirectConnection);
 }
 
 

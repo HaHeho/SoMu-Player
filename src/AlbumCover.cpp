@@ -13,7 +13,7 @@ QPixmap* AlbumCover::getImage()
 
 QPixmap* AlbumCover::parseImage(QString path)
 {
-    if (path == "")
+    if (path == "" || !path.endsWith(".jpg") || !path.endsWith(".png"))
     {
         path = ":/albums/no-cover";
     }

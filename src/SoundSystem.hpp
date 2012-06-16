@@ -19,19 +19,23 @@ public:
     void pauseCurrentSound();
     void resumeCurrentSound();
     void stopCurrentSound();
+
+    void setSoundPositionInPerc(float perc);
+
     unsigned int getCurPositionInMs();
     unsigned int getLengthInMs();
-    float getCurPositionInPerc();
-    void setSoundPositionInPerc(float perc);
+    float        getCurPositionInPerc();
+    bool         isPlaying();
 
 
 private:
+    FMOD::System*  system;
+    FMOD::Sound*   curSound;
+    FMOD::Channel* channel;
+    FMOD_RESULT    result;
+
     void init();
     void checkError(FMOD_RESULT result);
-    FMOD::System     *system;
-    FMOD::Sound      *curSound;
-    FMOD::Channel    *channel;
-    FMOD_RESULT       result;
 };
 
 #endif // SOUND_SYSTEM_HPP

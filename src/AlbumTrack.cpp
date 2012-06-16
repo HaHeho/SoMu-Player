@@ -5,7 +5,7 @@
 AlbumTrack::AlbumTrack(Album* album, QString trackPath)
 {
     this->path = trackPath;
-    this->number = 1;
+    this->number = 0;
     this->artist = "Unknown Artist";
     this->album = album;
     this->genre = "Unknown Genre";
@@ -16,6 +16,11 @@ void AlbumTrack::setSound(FMOD::Sound* sound)
     this->sound = sound;
     this->title = parseTitle(sound);
     calculateDuration();
+}
+
+void AlbumTrack::setLibraryIndex(unsigned int index)
+{
+    this->libraryIndex = index;
 }
 
 QString AlbumTrack::parseTitle(FMOD::Sound* sound)
@@ -53,6 +58,11 @@ QPixmap* AlbumTrack::getCoverImage()
     return this->album->getCoverImage();
 }
 
+unsigned int AlbumTrack::getLibraryIndex()
+{
+    return this->libraryIndex;
+}
+
 QString AlbumTrack::getTitle()
 {
     return this->title;
@@ -68,12 +78,28 @@ QString AlbumTrack::getGenre()
     return this->genre;
 }
 
-Album *AlbumTrack::getAlbum()
+Album* AlbumTrack::getAlbum()
 {
     return this->album;
+}
+
+QString AlbumTrack::getAlbumName()
+{
+    return this->album->getName();
 }
 
 unsigned int AlbumTrack::getDuration()
 {
     return this->duration;
+}
+
+QString AlbumTrack::getDurationAsString()
+{
+    QString string = QString::number((this->duration / 60000) % 60) + ":";
+
+    int sec = (this->duration / 1000) % 60;
+    if (sec < 10)
+        string += '0';
+
+    return string + QString::number(sec);
 }

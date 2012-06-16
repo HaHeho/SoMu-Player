@@ -17,6 +17,7 @@ class AlbumTrack
 public:
     AlbumTrack(Album* album, QString trackPath);
     void setSound(FMOD::Sound* sound);
+    void setLibraryIndex(unsigned int index);
 
     QString      getPath();
     unsigned int getNumber();
@@ -24,9 +25,12 @@ public:
     QString      getArtist();
     QString      getGenre();
     Album*       getAlbum();
+    QString      getAlbumName();
     FMOD::Sound* getSound();
     unsigned int getDuration();
+    QString      getDurationAsString();
     QPixmap*     getCoverImage();
+    unsigned int getLibraryIndex();
 
 private:
     QString      path;
@@ -37,6 +41,7 @@ private:
     Album*       album;
     FMOD::Sound* sound;
     unsigned int duration;
+    unsigned int libraryIndex;
 
     QString parseTitle(FMOD::Sound* sound);
     void calculateDuration();

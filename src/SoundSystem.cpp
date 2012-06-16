@@ -32,6 +32,8 @@ void SoundSystem::init()
         _getch();
         exit(0);
     }
+
+    this->curSound = 0;
 }
 
 
@@ -91,7 +93,7 @@ unsigned int SoundSystem::getCurPositionInMs()
 unsigned int SoundSystem::getLengthInMs()
 {
     unsigned int length = 0;
-    FMOD::Sound *currentsound = 0;
+    FMOD::Sound* currentsound = 0;
     channel->getCurrentSound(&currentsound);
     if (currentsound)
     {
@@ -113,7 +115,12 @@ float SoundSystem::getCurPositionInPerc()
     if (cur == 0 || length == 0)
         return 0;
 
-    return (float)cur/(float)length;
+    return (float) cur / (float) length;
+}
+
+bool SoundSystem::isPlaying()
+{
+    return (this->curSound != 0);
 }
 
 
@@ -123,6 +130,7 @@ void SoundSystem::setSoundPositionInPerc(float perc)
     float newPos = length * perc;
     if (perc == 1)
         newPos--;
+
     result = channel->setPosition(newPos, FMOD_TIMEUNIT_MS);
 }
 
@@ -131,5 +139,6 @@ void SoundSystem::setSoundPositionInPerc(float perc)
 void SoundSystem::stopCurrentSound()
 {
     channel->stop();
+    curSound = 0;
 }
 

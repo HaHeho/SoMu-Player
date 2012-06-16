@@ -1,39 +1,80 @@
 #include "PlaylistController.hpp"
 
 
-PlaylistController::PlaylistController(SoundSystem* ss, QObject* parent) : QObject(parent)
+PlaylistController::PlaylistController(PlaylistControllerViewList* viewList, SoundSystem* ss, QObject* parent) : QObject(parent)
 {
+    this->viewList = viewList;
     this->soundSystem = ss;
     this->currentIndex = -1;
+    this->isInit = false;
+
+    connect(viewList, SIGNAL(delegateDraggedObject(QString)),
+            this, SLOT(getDraggedObject(QString)), Qt::DirectConnection);
+}
+
+void PlaylistController::init()
+{
+    this->isInit = true;
+
+    initStartPlaylist();
+
+    this->isInit = false;
 }
 
 
-PlaylistItem* PlaylistController::addToPlaylist(AlbumTrack* track)
+void PlaylistController::addToPlaylist(AlbumTrack* track)
 {
+    qDebug() << "PlaylistController::addToPlaylist(AlbumTrack* track)";
+
     track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
 
     PlaylistItem* item = new PlaylistItem(track, 150, 20);
-    connect(item, SIGNAL(doubleClicked(PlaylistItem*)), this, SLOT(startSound(PlaylistItem*)));
-    playList.append(item);
+    item->setParentItem(this->viewList);
+    item->setPos(0, item->getHeight() * (getPlaylistLength()));
+    item->init();
 
-    /*
+    this->playlist.append(item);
+
+    connect(item, SIGNAL(doubleClicked(PlaylistItem*)),
+            this, SLOT(startSound(PlaylistItem*)));
+
     // if first item ... start playing
-    if (playList.size() == 1)
+    if ((this->playlist.size() == 1 || !(this->soundSystem->isPlaying()))
+            && (!this->isInit))
         startSound(item);
-    */
+}
 
-    return item;
+void PlaylistController::addToPlaylistAndPlay(AlbumTrack* track)
+{
+    addToPlaylist(track);
+    startSound(this->playlist.last());
+}
+
+void PlaylistController::initStartPlaylist()
+{
+    Album* album = new Album("");
+
+    QString path1 = "../SoMu-Player/media/jaguar.wav";
+    AlbumTrack* track1 = album->addTrack(path1);
+    addToPlaylist(track1);
+
+    QString path2 = "../SoMu-Player/media/wave.mp3";
+    AlbumTrack* track2 = album->addTrack(path2);
+    addToPlaylist(track2);
+
+    QString path3 = "../SoMu-Player/media/stereo.ogg";
+    AlbumTrack* track3 = album->addTrack(path3);
+    addToPlaylist(track3);
 }
 
 void PlaylistController::startNextSound()
 {
-    qDebug() << "PlaylistController::startNextSound()";
     this->currentIndex++;
 
     // if not last elememt + 1
-    if (this->currentIndex != this->playList.size())
+    if (this->currentIndex != this->playlist.size())
     {
-        startSound(this->playList.at(this->currentIndex));
+        startSound(this->playlist.at(this->currentIndex));
     }
     else
     {
@@ -45,10 +86,9 @@ void PlaylistController::startNextSound()
 
 void PlaylistController::startSound(PlaylistItem* sender)
 {
-    qDebug() << "PlaylistController::startSound()";
     this->soundSystem->stopCurrentSound();
 
-    this->currentIndex = this->playList.indexOf(sender);
+    this->currentIndex = this->playlist.indexOf(sender);
     this->soundSystem->playSound(sender->getSound());
 
     updateItemColors();
@@ -57,28 +97,35 @@ void PlaylistController::startSound(PlaylistItem* sender)
 
 void PlaylistController::updateItemColors()
 {
-    for (int i = 0; i < this->playList.size(); i++)
+    for (int i = 0; i < this->playlist.size(); i++)
     {
         if (i < this->currentIndex)
-            this->playList.at(i)->setStatus(PlaylistItem::PAST);
+            this->playlist.at(i)->setStatus(PlaylistItem::PAST);
         else if (i == this->currentIndex)
-            this->playList.at(i)->setStatus(PlaylistItem::NOW);
+            this->playlist.at(i)->setStatus(PlaylistItem::NOW);
         else if (i > this->currentIndex)
-            this->playList.at(i)->setStatus(PlaylistItem::FUTURE);
+            this->playlist.at(i)->setStatus(PlaylistItem::FUTURE);
     }
 }
 
-int PlaylistController::getPlayListLength()
+int PlaylistController::getPlaylistLength()
 {
-    return playList.count();
+    return this->playlist.count();
 }
 
 PlaylistItem* PlaylistController::getItemAt(int i)
 {
-    return playList.at(i);
+    return this->playlist.at(i);
 }
 
 void PlaylistController::removeItemAt(int i)
 {
-    playList.removeAt(i);
+    this->playlist.removeAt(i);
+}
+
+void PlaylistController::getDraggedObject(QString path)
+{
+    Album* album = new Album(path);
+    AlbumTrack* track = album->addTrack(path);
+    addToPlaylist(track);
 }

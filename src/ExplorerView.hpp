@@ -2,27 +2,31 @@
 #define EXPLORER_VIEW_HPP
 
 
-#include "BasicItem.hpp"
+#include <QTreeWidget>
+#include <QHeaderView>
+
 #include "AlbumTrack.hpp"
+#include "PlaylistController.hpp"
 
 
-class ExplorerView : public BasicItem
+class ExplorerView : public QTreeWidget
 {
 public:
 
     Q_OBJECT
 
 public:
-    explicit ExplorerView(float w, float h);
-    virtual void init();
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+    ExplorerView(QWidget* parent = 0);
+    void init();
     void addItem(AlbumTrack* track);
 
 private:
 
 public slots:
+    void myDoubleClicked(QTreeWidgetItem* item, int col);
 
 signals:
+    void playItem(int index);
 
 };
 

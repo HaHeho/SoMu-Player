@@ -18,9 +18,13 @@ public:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event);
-    FMOD::Sound* getSound();
-    QPixmap* getCoverImage();
+    void emitDoubleClicked();
+
     void setStatus(Status newStatus);
+
+    FMOD::Sound* getSound();
+    QPixmap*     getCoverImage();
+
 
 private:
     Status             status;

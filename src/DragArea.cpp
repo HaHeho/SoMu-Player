@@ -9,8 +9,6 @@ DragArea::DragArea(QWidget *parent) : QLabel(parent)
 
 void DragArea::dragEnterEvent(QDragEnterEvent* event)
 {
-    qDebug("DragArea::dragEnterEvent(QDragEnterEvent* event)");
-
     event->acceptProposedAction();
 }
 
@@ -63,7 +61,5 @@ void DragArea::dropEvent(QDropEvent *event)
 
 void DragArea::dragLeaveEvent(QDragLeaveEvent* event)
 {
-    qDebug("DragArea::dragLeaveEvent(QDragLeaveEvent* event)");
-
     event->accept();
 }

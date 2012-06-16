@@ -20,13 +20,13 @@ void ExplorerTreeView::init()
     this->header()->setStretchLastSection(false);
 
     this->categoryTitles = new QTreeWidgetItem(QStringList("Titel"));
-    this->addTopLevelItem(categoryTitles);
+    this->addTopLevelItem(this->categoryTitles);
     this->categoryAlbums = new QTreeWidgetItem(QStringList("Alben"));
-    this->addTopLevelItem(categoryAlbums);
+    this->addTopLevelItem(this->categoryAlbums);
     this->categoryArtists = new QTreeWidgetItem(QStringList("Künstler"));
-    this->addTopLevelItem(categoryArtists);
+    this->addTopLevelItem(this->categoryArtists);
     this->categoryGenres = new QTreeWidgetItem(QStringList("Genres"));
-    this->addTopLevelItem(categoryGenres);
+    this->addTopLevelItem(this->categoryGenres);
 }
 
 void ExplorerTreeView::sort()
@@ -39,11 +39,10 @@ void ExplorerTreeView::sort()
 
 void ExplorerTreeView::addItem(AlbumTrack* track)
 {
-    QString album = track->getAlbum()->getName();
     addElement(this->categoryTitles, track->getTitle());
-    addElement(this->categoryAlbums, album);
-    addElementWithChild(this->categoryArtists, track->getArtist(), album);
-    addElementWithChild(this->categoryGenres, track->getGenre(), album);
+    addElement(this->categoryAlbums, track->getAlbumName());
+    addElementWithChild(this->categoryArtists, track->getArtist(), track->getAlbumName());
+    addElementWithChild(this->categoryGenres, track->getGenre(), track->getAlbumName());
     //sort();
 }
 

@@ -13,7 +13,6 @@ void PlaylistControllerViewCover::init()
 
 void PlaylistControllerViewCover::setImage(QPixmap* image)
 {
-    qDebug() << "PlaylistControllerViewCover::setImage()";
     this->image = new QPixmap(image->scaledToWidth(this->width));
 }
 

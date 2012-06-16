@@ -1,14 +1,18 @@
 #include "ExplorerController.hpp"
 
 
-ExplorerController::ExplorerController(SoundSystem* soundSystem, ExplorerView* view, ExplorerTreeView* treeView, QObject* parent)
+ExplorerController::ExplorerController(PlaylistController* playlistController, SoundSystem* soundSystem, ExplorerView* view, ExplorerTreeView* treeView, QObject* parent)
     : QObject(parent)
 {
+    this->playlistController = playlistController;
     this->soundSystem = soundSystem;
     this->view = view;
     this->treeView = treeView;
 
     this->musicFilters << "*.mp3" << "*.wav" << "*.wma" << "*.ogg" << "*.wmv" << "*.flac";
+
+    connect(this->view, SIGNAL(playItem(int)),
+            this, SLOT(playItem(int)), Qt::DirectConnection);
 }
 
 void ExplorerController::init()
@@ -40,9 +44,20 @@ void ExplorerController::addItemToLibrary(QString path)
 
     Album* album = new Album(path);
     AlbumTrack* track = new AlbumTrack(album, path);
-    track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Diese Zeile kostet extrem viel Performance beim Start
+    //track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
+    ////////////////////////////////////////////////////////////////////////////
 
     this->library.append(track);
+    track->setLibraryIndex(library.indexOf(track));
+
     this->view->addItem(track);
     this->treeView->addItem(track);
+}
+
+void ExplorerController::playItem(int index)
+{
+    this->playlistController->addToPlaylistAndPlay(this->library.at(index));
 }

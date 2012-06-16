@@ -3,7 +3,6 @@
 
 
 #include "BasicItem.hpp"
-#include "PlaylistController.hpp"
 
 
 class PlaylistControllerViewCover : public BasicItem

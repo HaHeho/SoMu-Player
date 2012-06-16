@@ -27,12 +27,11 @@ private:
 
     void addElement(QTreeWidgetItem* parent, QString& element);
     void addElementWithChild(QTreeWidgetItem* parent, QString& element, QString& child);
-
     int checkIfElementExists(QTreeWidgetItem* parent, QString& element);
-
     void sort();
 
 public slots:
+
 
 signals:
 

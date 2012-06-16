@@ -17,6 +17,7 @@ void ExplorerTreeView::init()
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     this->header()->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
     this->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+    this->header()->setResizeMode(1, QHeaderView::ResizeToContents);
     this->header()->setStretchLastSection(false);
 
     this->categoryTitles = new QTreeWidgetItem(QStringList("Titel"));
@@ -39,17 +40,55 @@ void ExplorerTreeView::sort()
 
 void ExplorerTreeView::myDoubleClicked(QTreeWidgetItem* item, int /*col*/)
 {
-    // 2nd column ist number of index
-    emit showAlbum(item->text(1).toInt());
+    if (item->text(1) != "")
+        // 2nd column ist number of index
+        emit showAlbum(item->text(1).toInt());
+    else
+        emit showAlbum(-1);
 }
 
 void ExplorerTreeView::addItem(AlbumTrack* track)
 {
     addElement(this->categoryTitles, track->getTitle());
-    addElement(this->categoryAlbums, track->getAlbumName());
-    addElementWithChild(this->categoryArtists, track->getArtist(), track->getAlbumName());
-    addElementWithChild(this->categoryGenres, track->getGenre(), track->getAlbumName());
+
+    addAlbum(this->categoryAlbums, track->getAlbum());
+    //addElement(this->categoryAlbums, track->getAlbumName());
+
+    addElementWithAlbum(this->categoryArtists, track->getArtist(), track->getAlbum());
+    //addElementWithChild(this->categoryArtists, track->getArtist(), track->getAlbumName());
+
+    addElementWithAlbum(this->categoryGenres, track->getGenre(), track->getAlbum());
+    //addElementWithChild(this->categoryGenres, track->getGenre(), track->getAlbumName());
+
     //sort();
+}
+
+void ExplorerTreeView::addAlbum(QTreeWidgetItem* parent, Album* album)
+{
+    if (checkIfElementExists(parent, album->getName()) < 0)
+    {
+        QStringList text;
+        text << album->getName() << QString::number(album->getLibraryIndex());
+
+        QTreeWidgetItem* item = new QTreeWidgetItem(text);
+        parent->addChild(item);
+
+        connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+                this, SLOT(myDoubleClicked(QTreeWidgetItem*,int)), Qt::UniqueConnection);
+    }
+}
+
+void ExplorerTreeView::addElementWithAlbum(QTreeWidgetItem* parent, QString &element, Album* album)
+{
+    // if element doesn't exist ... new one is created
+    int index = checkIfElementExists(parent, element);
+    if (index < 0)
+    {
+        parent->addChild(new QTreeWidgetItem(QStringList(element)));
+        index = 0;
+    }
+
+    addAlbum(parent->child(index), album);
 }
 
 int ExplorerTreeView::checkIfElementExists(QTreeWidgetItem* parent, QString& element)

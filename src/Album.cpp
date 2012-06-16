@@ -5,19 +5,17 @@ Album::Album(QString path)
 {
     this->name = parseName(path);
     this->cover = new AlbumCover(path);
+    this->libraryIndex = 0;
+}
+
+void Album::addTrack(AlbumTrack* track)
+{
+    this->tracklist.append(track);
 }
 
 QString Album::getName()
 {
     return this->name;
-}
-
-AlbumTrack* Album::addTrack(QString trackPath)
-{
-    AlbumTrack* track = new AlbumTrack(this, trackPath);
-    this->tracklist.append(track);
-
-    return track;
 }
 
 void Album::setLibraryIndex(unsigned int index)

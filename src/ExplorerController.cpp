@@ -58,7 +58,7 @@ void ExplorerController::addItemToLibrary(QString path)
     this->trackLibrary.append(track);
     track->setLibraryIndex(this->trackLibrary.indexOf(track));
 
-    this->view->addItem(track);
+    //this->view->addItem(track);
     this->treeView->addItem(track);
 }
 
@@ -79,7 +79,10 @@ Album* ExplorerController::checkIfAlbumExists(QString path)
 
 void ExplorerController::showAlbum(int index)
 {
-    this->view->showAlbum(this->albumLibrary.at(index));
+    if (index < 0)
+        this->view->clear();
+    else
+        this->view->showAlbum(this->albumLibrary.at(index));
 }
 
 void ExplorerController::playItem(int index)

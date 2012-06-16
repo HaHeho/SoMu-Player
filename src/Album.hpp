@@ -51,7 +51,7 @@ class Album
 {
 public:
     Album(QString path);
-    AlbumTrack* addTrack(QString trackPath);
+    void addTrack(AlbumTrack* track);
 
     void setLibraryIndex(unsigned int index);
 

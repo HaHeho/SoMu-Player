@@ -55,15 +55,15 @@ void PlaylistController::initStartPlaylist()
     Album* album = new Album("");
 
     QString path1 = "../SoMu-Player/media/jaguar.wav";
-    AlbumTrack* track1 = album->addTrack(path1);
+    AlbumTrack* track1 = new AlbumTrack(album, path1);
     addToPlaylist(track1);
 
     QString path2 = "../SoMu-Player/media/wave.mp3";
-    AlbumTrack* track2 = album->addTrack(path2);
+    AlbumTrack* track2 = new AlbumTrack(album, path2);
     addToPlaylist(track2);
 
     QString path3 = "../SoMu-Player/media/stereo.ogg";
-    AlbumTrack* track3 = album->addTrack(path3);
+    AlbumTrack* track3 = new AlbumTrack(album, path3);
     addToPlaylist(track3);
 }
 
@@ -126,6 +126,6 @@ void PlaylistController::removeItemAt(int i)
 void PlaylistController::getDraggedObject(QString path)
 {
     Album* album = new Album(path);
-    AlbumTrack* track = album->addTrack(path);
+    AlbumTrack* track = new AlbumTrack(album, path);
     addToPlaylist(track);
 }

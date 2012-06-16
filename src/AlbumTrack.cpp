@@ -9,6 +9,8 @@ AlbumTrack::AlbumTrack(Album* album, QString trackPath)
     this->artist = "Unknown Artist";
     this->album = album;
     this->genre = "Unknown Genre";
+
+    this->album->addTrack(this);
 }
 
 void AlbumTrack::setSound(FMOD::Sound* sound)

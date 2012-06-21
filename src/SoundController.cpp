@@ -10,8 +10,8 @@ SoundController::SoundController(SoundSystem* ss, QObject* parent) : QObject(par
 void SoundController::initPlaylistController(PlaylistController* plc)
 {
     this->playlist = plc;
-    connect(this, SIGNAL(playNext()),
-            this->playlist, SLOT(startNextSound()), Qt::DirectConnection);
+    connect(this, SIGNAL(playNext()), this->playlist, SLOT(startNextSound()), Qt::DirectConnection);
+    connect(this, SIGNAL(playPrev()), this->playlist, SLOT(startPrevSound()), Qt::DirectConnection);
 }
 
 
@@ -39,6 +39,7 @@ void SoundController::next()
 void SoundController::prev()
 {
     qDebug() << "SoundController::prev()";
+    emit playPrev();
 }
 
 

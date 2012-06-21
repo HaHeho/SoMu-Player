@@ -33,7 +33,7 @@ void ExplorerView::addItem(AlbumTrack* track)
 
     QTreeWidgetItem* item = new QTreeWidgetItem(trackInfo);
     item->setTextAlignment(0, Qt::AlignRight);   // Number
-    item->setTextAlignment(4, Qt::AlignHCenter); // Genre
+    item->setTextAlignment(4, Qt::AlignLeft);   // Genre
     item->setTextAlignment(5, Qt::AlignRight);   // Duration
     this->addTopLevelItem(item);
 

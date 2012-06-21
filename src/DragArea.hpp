@@ -5,21 +5,12 @@
 #include <QLabel>
 
 
-QT_BEGIN_NAMESPACE
-class QMimeData;
-QT_END_NAMESPACE
-
-
-
-class DragArea : public QLabel
+class DragArea : public QGroupBox
 {
     Q_OBJECT
 
 public:
-    DragArea(QWidget *parent = 0);
-
-private:
-    QLabel *label;
+    DragArea();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);

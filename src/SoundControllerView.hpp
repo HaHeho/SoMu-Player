@@ -22,9 +22,8 @@ private:
     SoundController* soundController;
     SoundSystem* soundSystem;
     QSlider* progressSlider;
-    QGraphicsTextItem* progressText;
+    QLabel* progressText;
     bool sliderMoveActivated;
-
     void checkTrackEnded();
 
 

@@ -24,16 +24,16 @@ private:
     PlaylistController* playlistController;
 
     QStringList        musicFilters;
+    QStringList        imageFilters;
     SoundSystem*       soundSystem;
     ExplorerView*      view;
     ExplorerTreeView*  treeView;
-
     QList<AlbumTrack*> trackLibrary;
     QList<Album*>      albumLibrary;
 
     void initMusicLibrary();
     void addFolderToLibrary(QString folderPath);
-    void addItemToLibrary(QString path);
+    void addItemToLibrary(QString path, Album* album);
     Album* checkIfAlbumExists(QString path);
 
 signals:
@@ -41,6 +41,7 @@ signals:
 public slots:
     void showAlbum(int index);
     void playItem(int index);
+    void askAddAlbum(QAction* action);
 
 };
 

@@ -18,15 +18,16 @@ public:
 
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
 
 
 private:
     QPixmap normalImage;
     QPixmap rolloverImage;
+    QLabel* background;
     bool mouseOver;
 
 

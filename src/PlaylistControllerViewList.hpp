@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include "BasicItem.hpp"
 #include "DragArea.hpp"
+#include "PlaylistItem.hpp"
 #include "Album.hpp"
 
 
@@ -15,12 +16,8 @@ class PlaylistControllerViewList : public BasicItem
 
 public:
     explicit PlaylistControllerViewList(float w, float h);
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
-    void initDragArea(QGraphicsScene* areaParent);
-
-private:
-    DragArea* dragArea;
+    void showItem(PlaylistItem* item);
 
 signals:
     void delegateDraggedObject(QString path);

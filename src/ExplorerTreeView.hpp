@@ -25,8 +25,6 @@ private:
     QTreeWidgetItem* categoryArtists;
     QTreeWidgetItem* categoryGenres;
 
-    void addAlbum(QTreeWidgetItem* parent, Album* album);
-    void addElementWithAlbum(QTreeWidgetItem* parent, QString& element, Album* album);
     void addElement(QTreeWidgetItem* parent, QString& element);
     void addElementWithChild(QTreeWidgetItem* parent, QString& element, QString& child);
     int checkIfElementExists(QTreeWidgetItem* parent, QString& element);

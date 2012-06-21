@@ -8,8 +8,7 @@ PlaylistController::PlaylistController(PlaylistControllerViewList* viewList, Sou
     this->currentIndex = -1;
     this->isInit = false;
 
-    connect(viewList, SIGNAL(delegateDraggedObject(QString)),
-            this, SLOT(getDraggedObject(QString)), Qt::DirectConnection);
+    connect(viewList, SIGNAL(delegateDraggedObject(QString)),this, SLOT(getDraggedObject(QString)), Qt::DirectConnection);
 }
 
 void PlaylistController::init()
@@ -24,19 +23,17 @@ void PlaylistController::init()
 
 void PlaylistController::addToPlaylist(AlbumTrack* track)
 {
-    qDebug() << "PlaylistController::addToPlaylist(AlbumTrack* track)";
+    qDebug() << "Add To Playlist: " << track->getPath();
 
     track->setSound(this->soundSystem->createNewSound(track->getPath().toStdString()));
 
-    PlaylistItem* item = new PlaylistItem(track, 150, 20);
-    item->setParentItem(this->viewList);
-    item->setPos(0, item->getHeight() * (getPlaylistLength()));
+    PlaylistItem* item = new PlaylistItem(track, playlist.length());
+    viewList->showItem(item);
     item->init();
 
     this->playlist.append(item);
 
-    connect(item, SIGNAL(doubleClicked(PlaylistItem*)),
-            this, SLOT(startSound(PlaylistItem*)));
+    connect(item, SIGNAL(doubleClicked(PlaylistItem*)), this, SLOT(startSound(PlaylistItem*)));
 
     // if first item ... start playing
     if ((this->playlist.size() == 1 || !(this->soundSystem->isPlaying()))
@@ -54,34 +51,36 @@ void PlaylistController::initStartPlaylist()
 {
     Album* album = new Album("");
 
-    QString path1 = "../SoMu-Player/media/jaguar.wav";
-    AlbumTrack* track1 = new AlbumTrack(album, path1);
+    QString path1 = "../SoMuPlayer/media/jaguar.wav";
+    AlbumTrack* track1 = album->addTrack(path1);
     addToPlaylist(track1);
 
-    QString path2 = "../SoMu-Player/media/wave.mp3";
-    AlbumTrack* track2 = new AlbumTrack(album, path2);
+    QString path2 = "../SoMuPlayer/media/wave.mp3";
+    AlbumTrack* track2 = album->addTrack(path2);
     addToPlaylist(track2);
 
-    QString path3 = "../SoMu-Player/media/stereo.ogg";
-    AlbumTrack* track3 = new AlbumTrack(album, path3);
+    QString path3 = "../SoMuPlayer/media/stereo.ogg";
+    AlbumTrack* track3 = album->addTrack(path3);
     addToPlaylist(track3);
 }
 
 void PlaylistController::startNextSound()
 {
     this->currentIndex++;
+    if (currentIndex == playlist.size())
+        currentIndex = 0;
 
-    // if not last elememt + 1
-    if (this->currentIndex != this->playlist.size())
-    {
-        startSound(this->playlist.at(this->currentIndex));
-    }
-    else
-    {
-        this->soundSystem->stopCurrentSound();
-        updateItemColors();
-        emit setPlaylistCover(new QPixmap());
-    }
+    startSound(this->playlist.at(this->currentIndex));
+}
+
+void PlaylistController::startPrevSound()
+{
+    this->currentIndex--;
+
+    if (this->currentIndex == -1)
+        currentIndex = playlist.size()-1;
+
+    startSound(this->playlist.at(this->currentIndex));
 }
 
 void PlaylistController::startSound(PlaylistItem* sender)
@@ -92,7 +91,8 @@ void PlaylistController::startSound(PlaylistItem* sender)
     this->soundSystem->playSound(sender->getSound());
 
     updateItemColors();
-    emit setPlaylistCover(sender->getCoverImage());
+
+    emit setPlaylistCover(sender->getTrack()->getAlbum()->getCover()->getImagePath());
 }
 
 void PlaylistController::updateItemColors()
@@ -126,6 +126,6 @@ void PlaylistController::removeItemAt(int i)
 void PlaylistController::getDraggedObject(QString path)
 {
     Album* album = new Album(path);
-    AlbumTrack* track = new AlbumTrack(album, path);
+    AlbumTrack* track = album->addTrack(path);
     addToPlaylist(track);
 }

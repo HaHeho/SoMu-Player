@@ -23,6 +23,7 @@ private:
 
 signals:
     void playNext();
+    void playPrev();
 
 
 public slots:

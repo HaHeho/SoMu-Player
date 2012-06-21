@@ -14,25 +14,25 @@ class PlaylistItem : public BasicItem
 public:
     enum Status {PAST, NOW, FUTURE};
 
-    explicit PlaylistItem(AlbumTrack* track, float w, float h);
+    explicit PlaylistItem(AlbumTrack* track, int index);
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void init();
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event);
+    void mouseDoubleClickEvent(QMouseEvent* event);
     void emitDoubleClicked();
-
     void setStatus(Status newStatus);
-
+    void actBackgroundColor();
     FMOD::Sound* getSound();
-    QPixmap*     getCoverImage();
+    AlbumTrack* getTrack();
 
 
 private:
-    Status             status;
-    QColor             colorNow;
-    QColor             colorPast;
-    AlbumTrack*        track;
-    QGraphicsTextItem* titleText;
-    QGraphicsTextItem* durationText;
+    Status          status;
+    QColor          colorNow;
+    QColor          colorPast;
+    AlbumTrack*     track;
+    QLabel*         titleText;
+    QLabel*         durationText;
+    int             playlistIndex;
 
 signals:
     void doubleClicked(PlaylistItem* item);

@@ -34,13 +34,14 @@ private:
 
 
 signals:
-    void setPlaylistCover(QPixmap* cover);
+    void setPlaylistCover(QString path);
 
 
 public slots:
     void getDraggedObject(QString path);
     void startSound(PlaylistItem* sender);
     void startNextSound();
+    void startPrevSound();
 };
 
 #endif // PLAYLIST_CONTROLLER_HPP

@@ -1,22 +1,28 @@
 #include "AlbumCover.hpp"
 
 
+AlbumCover::AlbumCover()
+{
+    parseImage("");
+}
+
 AlbumCover::AlbumCover(QString path)
 {
-    this->image = parseImage(path);
+    parseImage(path);
 }
 
-QPixmap* AlbumCover::getImage()
+QString AlbumCover::getImagePath()
 {
-    return this->image;
+    return this->imagePath;
 }
 
-QPixmap* AlbumCover::parseImage(QString path)
+void AlbumCover::parseImage(QString path)
 {
-    if (path == "" || !path.endsWith(".jpg") || !path.endsWith(".png"))
+    if (path == "" || !(path.endsWith(".jpg") || path.endsWith(".jpeg") || path.endsWith(".png") || path.endsWith(".bmp")))
     {
         path = ":/albums/no-cover";
     }
-
-    return new QPixmap(path);
+    imagePath = path;
 }
+
+

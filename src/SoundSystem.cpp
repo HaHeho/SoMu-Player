@@ -15,8 +15,6 @@ void SoundSystem::init()
     result = FMOD::System_Create(&system);
     checkError(result);
 
-    // Treiber für Linux war FMOD_OUTPUTTYPE_ALSA
-    //result = system->setOutput(FMOD_OUTPUTTYPE_ALSA);
     result = system->setOutput(FMOD_OUTPUTTYPE_AUTODETECT);
     checkError(result);
 

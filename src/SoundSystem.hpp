@@ -3,12 +3,11 @@
 
 
 #include <QtGui>
-#include <conio.h>
+//#include <conio.h>
 
 #include "wincompat.h"
 #include "fmod_errors.h"
 #include "fmod.hpp"
-
 
 class SoundSystem
 {

@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wwrite-strings -Wformat-security -fno-check-new -fno-common  -shared -Wl,-soname,libtag_c.so.0 -o libtag_c.so.0.0.0 CMakeFiles/tag_c.dir/tag_c.cpp.o ../../taglib/libtag.so.1.7.2 -Wl,-rpath,/home/rico/Desktop/taglib-1.7.2/taglib: 

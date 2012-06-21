@@ -9,8 +9,7 @@ Button::Button(float w, float h) : BasicItem(w, h)
 
 void Button::init()
 {
-    setAcceptHoverEvents(true);
-    setAcceptedMouseButtons(Qt::LeftButton);
+    background = new QLabel(this);
 }
 
 
@@ -18,6 +17,10 @@ void Button::setNormalImage(std::string path)
 {
     QString str(path.c_str());
     normalImage = QPixmap(str);
+
+    background->setPixmap(normalImage);
+    this->setMinimumSize(normalImage.width(), normalImage.height());
+    this->setMaximumSize(normalImage.width(), normalImage.height());
 }
 
 
@@ -53,13 +56,13 @@ void Button::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 }
 
 
-void Button::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Button::mousePressEvent(QMouseEvent* event)
 {
     Q_UNUSED(event);
 }
 
 
-void Button::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void Button::mouseReleaseEvent(QMouseEvent* event)
 {
     Q_UNUSED(event);
 
@@ -70,15 +73,17 @@ void Button::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+void Button::enterEvent(QEvent *event)
 {
     Q_UNUSED(event);
     mouseOver = true;
+    background->setPixmap(rolloverImage);
 }
 
 
-void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+void Button::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event);
     mouseOver = false;
+    background->setPixmap(normalImage);
 }

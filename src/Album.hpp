@@ -3,7 +3,6 @@
 
 
 #include <QDebug>
-#include <QPixmap>
 #include "fmod.hpp"
 #include "AlbumCover.hpp"
 
@@ -29,7 +28,6 @@ public:
     FMOD::Sound* getSound();
     unsigned int getDuration();
     QString      getDurationAsString();
-    QPixmap*     getCoverImage();
     unsigned int getLibraryIndex();
 
 private:
@@ -39,6 +37,7 @@ private:
     QString      artist;
     QString      genre;
     Album*       album;
+    QString      albumName;
     FMOD::Sound* sound;
     unsigned int duration;
     unsigned int libraryIndex;
@@ -51,22 +50,24 @@ class Album
 {
 public:
     Album(QString path);
-    void addTrack(AlbumTrack* track);
+    AlbumTrack* addTrack(QString trackPath);
 
     void setLibraryIndex(unsigned int index);
 
     QString            getName();
-    QPixmap*           getCoverImage();
+    AlbumCover*        getCover();
+    QImage*            getCoverImage();
     QList<AlbumTrack*> getTracklist();
     unsigned int       getLibraryIndex();
+    void               searchBestAlbumCover(QStringList fileList);
+    void               parseName();
 
 private:
+    QString            albumPath;
     QString            name;
     AlbumCover*        cover;
     QList<AlbumTrack*> tracklist;
     unsigned int       libraryIndex;
-
-    QString parseName(QString path);
 };
 
 

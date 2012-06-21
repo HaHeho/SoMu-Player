@@ -14,11 +14,14 @@ public:
     virtual void init();
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
 
+
 private:
     QPixmap* image;
+    QLabel* label;
+
 
 public slots:
-    void setImage(QPixmap* image);
+    void setImage(QString slot);
 
 signals:
 

@@ -1,5 +1,6 @@
-//#include "AlbumTrack.hpp"
 #include "Album.hpp"
+#include <taglib/fileref.h>
+#include <taglib/tag.h>
 
 
 AlbumTrack::AlbumTrack(Album* album, QString trackPath)
@@ -10,7 +11,22 @@ AlbumTrack::AlbumTrack(Album* album, QString trackPath)
     this->album = album;
     this->genre = "Unknown Genre";
 
-    this->album->addTrack(this);
+    TagLib::FileRef f(trackPath.toStdString().c_str());
+    if(!f.isNull() && f.tag())
+    {
+        TagLib::Tag *tag = f.tag();
+        title = QString(tag->title().toCString());
+        number = tag->track();
+        artist = QString(tag->artist().toCString());
+        albumName = QString(tag->album().toCString());
+        genre = QString(tag->genre().toCString());
+    }
+    if(!f.isNull() && f.audioProperties())
+    {
+        TagLib::AudioProperties *properties = f.audioProperties();
+        duration = properties->length() * 1000;
+        //Weil Fmod die gerne in Millisekunden hätte
+    }
 }
 
 void AlbumTrack::setSound(FMOD::Sound* sound)
@@ -55,11 +71,6 @@ FMOD::Sound* AlbumTrack::getSound()
     return this->sound;
 }
 
-QPixmap* AlbumTrack::getCoverImage()
-{
-    return this->album->getCoverImage();
-}
-
 unsigned int AlbumTrack::getLibraryIndex()
 {
     return this->libraryIndex;
@@ -87,7 +98,7 @@ Album* AlbumTrack::getAlbum()
 
 QString AlbumTrack::getAlbumName()
 {
-    return this->album->getName();
+    return this->albumName;
 }
 
 unsigned int AlbumTrack::getDuration()

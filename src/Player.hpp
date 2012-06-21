@@ -18,12 +18,12 @@
 #include "ExplorerController.hpp"
 
 
-class Player : public QGraphicsView
+class Player : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Player(QGraphicsScene* qScene);
+    Player(QWidget* parent = 0);
 
 private:
     QGraphicsScene*              scene;
@@ -36,6 +36,7 @@ private:
     ExplorerView*                ev;
     ExplorerTreeView*            etv;
     ExplorerController*          ec;
+
 
 signals:
 

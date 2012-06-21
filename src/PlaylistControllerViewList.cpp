@@ -1,22 +1,26 @@
 #include "PlaylistControllerViewList.hpp"
+#include "Button.hpp"
 
 
-PlaylistControllerViewList::PlaylistControllerViewList(float w, float h)
-    : BasicItem(w, h)
+PlaylistControllerViewList::PlaylistControllerViewList(float w, float h) : BasicItem(w, h)
 {
     setBackgroundColor(QColor(200, 200, 200));
 }
 
-void PlaylistControllerViewList::initDragArea(QGraphicsScene* areaParent)
-{
-    dragArea = new DragArea();
-    dragArea->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
-    dragArea->setAutoFillBackground(false);
-    dragArea->setGeometry(pos().x(), pos().y(), getWidth(), getHeight());
-    areaParent->addWidget(dragArea);
 
-    connect(dragArea, SIGNAL(dragAccepted(QString)),
-            this, SLOT(handleDragObject(QString)), Qt::DirectConnection);
+void PlaylistControllerViewList::init()
+{
+    DragArea* dragArea = new DragArea();
+    QVBoxLayout* layout = new QVBoxLayout();
+    layout->setAlignment(Qt::AlignTop);
+    layout->setSpacing(1);
+
+    dragArea->setLayout(layout);
+    dragArea->setAutoFillBackground(true);
+    dragArea->setStyleSheet( "margin: 1px; background-color: rgb( 71, 71, 71)" );
+
+    connect(dragArea, SIGNAL(dragAccepted(QString)), this, SLOT(handleDragObject(QString)));
+    container = dragArea;
 }
 
 
@@ -24,7 +28,7 @@ void PlaylistControllerViewList::handleDragObject(QString path)
 {
     qDebug() << "PlaylistControllerViewList::handleDragObject() " << path;
 
-    QRegExp rx("(?:\\.wav|\\.mp3|\\.ogg)");
+    QRegExp rx("(?:\\.mp3|\\.wav|\\.wma|\\.ogg|\\.flac)");
     rx.setCaseSensitivity(Qt::CaseInsensitive);
 
     bool isMusicFile = path.indexOf(rx) != -1;
@@ -35,15 +39,8 @@ void PlaylistControllerViewList::handleDragObject(QString path)
         qDebug() << "The file isn't a valid musicfile.";
 }
 
-void PlaylistControllerViewList::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-    painter->setPen(QPen(Qt::black, 1));
-    painter->setBrush(QBrush(color));
-    painter->drawRect(boundingRect());
-}
 
-void PlaylistControllerViewList::init()
+void PlaylistControllerViewList::showItem(PlaylistItem* item)
 {
+    this->container->layout()->addWidget(item);
 }
